@@ -100,6 +100,10 @@ let hoge = function () {
             }
             var parameterObject = JSON.parse(message);
             var methodName = parameterObject.MethodName;
+            var arg = parameterObject.arg;
+            if (arg == undefined) {
+                arg = "";
+            }
             var evalString = methodName + '(' + parameterObject.arg + ')';
             eval(evalString);
         }
