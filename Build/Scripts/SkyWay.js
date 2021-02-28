@@ -10,7 +10,7 @@ const VIDEO_CODEC = 'VP9';
 function GetPeerId(yourid) {
 
     //peerオブジェクトの作成
-    peer = new Peer(yourid,{
+    peer = new Peer(yourid, {
         key: '6cee6718-08d3-4ce7-93a9-237ecd4601bb',    //APIkey
         debug: 3
     });
@@ -18,19 +18,19 @@ function GetPeerId(yourid) {
     //イベント id取得後じゃないと動作しない
 
     //openイベント
-    peer.on('open', function Open () {
+    peer.on('open', function Open() {
     });
 
     //errorイベント
-    peer.on('error', function Error (err) {
+    peer.on('error', function Error(err) {
     });
 
     //closeイベント
-    peer.on('close', function Close () {
+    peer.on('close', function Close() {
     });
 
     //disconnectedイベント
-    peer.on('disconnected', function Disconnected () {
+    peer.on('disconnected', function Disconnected() {
     });
 
     //着信処理
@@ -85,24 +85,24 @@ function removeVideo(peerId) {
 }
 
 // Unityと連携するための関数群
-let hoge = function() {
+let hoge = function () {
     return {
         // Unityからのメッセージを受け取るハンドラ登録
-        InitializationEventListener: function() {
-            window.addEventListener('message', function(event) {
+        InitializationEventListener: function () {
+            window.addEventListener('message', function (event) {
                 hoge.ExecuteJs(event.data);
-              }, false);
-          },
+            }, false);
+        },
         // 受け取ったメッセージから、evalを使って関数を呼び出す
-        ExecuteJs: function(message) {
+        ExecuteJs: function (message) {
             if (typeof (message) !== "string" && !(message instanceof String) || message == "null") {
                 return;
             }
             var parameterObject = JSON.parse(message);
             var methodName = parameterObject.MethodName;
-            var evalString = methodName + '(parameterObject)';
+            var evalString = methodName + '(' + parameterObject.arg + ')';
             eval(evalString);
-          }
-      };
-  }();
-  hoge.InitializationEventListener();
+        }
+    };
+}();
+hoge.InitializationEventListener();
