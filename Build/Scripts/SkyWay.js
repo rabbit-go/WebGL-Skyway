@@ -104,7 +104,7 @@ let hoge = function () {
             if (arg == undefined) {
                 arg = "";
             }
-            var evalString = methodName + '(' + parameterObject.arg + ')';
+            var evalString = methodName + '(' + arg + ')';
             eval(evalString);
         }
     };
