@@ -85,7 +85,7 @@ function removeVideo(peerId) {
 }
 
 // Unityと連携するための関数群
-hoge = function() {
+let hoge = function() {
     return {
         // Unityからのメッセージを受け取るハンドラ登録
         InitializationEventListener: function() {
