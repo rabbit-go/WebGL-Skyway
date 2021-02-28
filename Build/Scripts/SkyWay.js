@@ -6,11 +6,11 @@ const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
 
 var s = document.createElement("body");
-s.setAttribute('video');
+s.setAttribute('video','');
 s.setAttribute('id', 'LeftEye-video');
 document.head.appendChild(s);
 var s1 = document.createElement("body");
-s1.setAttribute('video');
+s1.setAttribute('video','');
 s1.setAttribute('id', 'RightEye-video');
 document.head.appendChild(s1);
 
