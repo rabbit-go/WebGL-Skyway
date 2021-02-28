@@ -1,9 +1,8 @@
 'use strict';
-
-let localStream = null;
 let peer = null;
-let existingCall = null;
-let isReceive = true;    //受信専用かどうか
+let existingLeftCall = null;
+let existingRightCall = null;
+const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
 
 //peeridを取得 
@@ -44,45 +43,53 @@ function GetPeerId(yourid) {
 
 //発信処理
 function MakeCall(calltoid) {
+    let localStream = null;
     const call = peer.call(calltoid, localStream, {     //空の動画を送る
         videoCodec: VIDEO_CODEC,                        //これを入れないと動画が再生できない
-        videoReceiveEnabled: isReceive,                 //受信専用としてここで設定
-        audioReceiveEnabled: isReceive,
+        videoReceiveEnabled: receiveOnly,                 //受信専用としてここで設定
+        audioReceiveEnabled: receiveOnly,
     });
-    setupCallEventHandlers(call);
+    return call;
+}
+
+function MakeCallLeft(calltoid) {
+    MakeCall(calltoid);
+    if (existingLeftCall) {
+        existingLeftCall.close();
+    };
+
+    existingLeftCall = call;
+
+    call.on('stream', function (stream) {
+        $('#LeftEye-video').get(0).srcObject = stream;
+    });
+
+    call.on('close', function () {    //??なぜか実行された側で発火せず??
+        $('#LeftEye-video').get(0).srcObject = undefined;
+    });
+}
+function MakeCallRight(calltoid) {
+    MakeCall(calltoid);
+    if (existingRightCall) {
+        existingRightCall.close();
+    };
+    existingRightCall = call;
+    call.on('stream', function (stream) {
+        $('#RightEye-video').get(0).srcObject = stream;
+    });
+
+    call.on('close', function () {    //??なぜか実行された側で発火せず??
+        $('#RightEye-video').get(0).srcObject = undefined;
+    });
 }
 
 //切断処理
 function EndCall() {
-    existingCall.close();
+    if(existingLeftCall)existingLeftCall.close();
+    if(existingRightCall)existingRightCall.close();
 }
 
-//Callオブジェクトに必要なイベント
-function setupCallEventHandlers(call) {
-    if (existingCall) {
-        existingCall.close();
-    };
 
-    existingCall = call;
-
-    call.on('stream', function (stream) {
-        addVideo(call, stream);
-    });
-
-    call.on('close', function () {    //??なぜか実行された側で発火せず??
-        removeVideo(call.remoteId);
-    });
-}
-
-//video要素の再生
-function addVideo(call, stream) {
-    $('#their-video').get(0).srcObject = stream;
-}
-
-//video要素の削除
-function removeVideo(peerId) {
-    $('#their-video').get(0).srcObject = undefined;
-}
 
 // Unityと連携するための関数群
 let hoge = function () {
