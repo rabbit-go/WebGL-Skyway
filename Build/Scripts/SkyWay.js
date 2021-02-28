@@ -105,3 +105,4 @@ let hoge = function() {
           }
       };
   }();
+  hoge.InitializationEventListener();
