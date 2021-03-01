@@ -97,7 +97,8 @@ function EndCall() {
 }
 
 function WebGLTextureUpdate(videoID, tex) {
-    if ($(videoID).get(0).paused)
+    var element = Document.getElementByID(videoID);
+    if (element.paused)
         return;
     GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[tex]);
     GLctx.texImage2D(GLctx.TEXTURE_2D, 0, GLctx.RGBA, GLctx.RGBA, GLctx.UNSIGNED_BYTE, $(videoID).get(0));
