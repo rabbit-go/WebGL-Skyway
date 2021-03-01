@@ -5,15 +5,12 @@ let existingRightCall = null;
 const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
 
-var s = document.createElement("body");
-s.setAttribute('video','');
-s.setAttribute('id', 'LeftEye-video');
-document.head.appendChild(s);
-var s1 = document.createElement("body");
-s1.setAttribute('video','');
-s1.setAttribute('id', 'RightEye-video');
-document.head.appendChild(s1);
-
+function CreateVideoElement(id) {
+    let s = document.createElement("body");
+    s.setAttribute('video', '');
+    s.setAttribute('id', id);
+    document.head.appendChild(s);
+}
 //peeridを取得 
 function GetPeerId(yourid) {
 
@@ -76,6 +73,7 @@ function MakeCallLeft(calltoid) {
     call.on('close', function () {    //??なぜか実行された側で発火せず??
         $('#LeftEye-video').get(0).srcObject = undefined;
     });
+    SendMessage('LeftEye', 'MyFunction', 'MyString');
 }
 function MakeCallRight(calltoid) {
     MakeCall(calltoid);
@@ -94,9 +92,17 @@ function MakeCallRight(calltoid) {
 
 //切断処理
 function EndCall() {
-    if(existingLeftCall)existingLeftCall.close();
-    if(existingRightCall)existingRightCall.close();
+    if (existingLeftCall) existingLeftCall.close();
+    if (existingRightCall) existingRightCall.close();
 }
+
+function WebGLTextureUpdate(videoID, tex) {
+    if ($(videoID).get(0).paused)
+        return;
+    GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[tex]);
+    GLctx.texImage2D(GLctx.TEXTURE_2D, 0, GLctx.RGBA, GLctx.RGBA, GLctx.UNSIGNED_BYTE, $(videoID).get(0));
+}
+
 
 
 
