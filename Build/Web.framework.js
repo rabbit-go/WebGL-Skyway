@@ -1297,7 +1297,7 @@ function _emscripten_asm_const_ii(code, a0) {
  return ASM_CONSTS[code](a0);
 }
 STATIC_BASE = GLOBAL_BASE;
-STATICTOP = STATIC_BASE + 2231792;
+STATICTOP = STATIC_BASE + 2234912;
 __ATINIT__.push({
  func: (function() {
   __GLOBAL__sub_I_AccessibilityScriptingClasses_cpp();
@@ -3275,7 +3275,7 @@ __ATINIT__.push({
   ___emscripten_environ_constructor();
  })
 });
-var STATIC_BUMP = 2231792;
+var STATIC_BUMP = 2234912;
 Module["STATIC_BASE"] = STATIC_BASE;
 Module["STATIC_BUMP"] = STATIC_BUMP;
 var tempDoublePtr = STATICTOP;
@@ -3612,6 +3612,46 @@ function _JS_SystemInfo_HasFullscreen() {
 }
 function _JS_SystemInfo_HasWebGL() {
  return Module.SystemInfo.hasWebGL;
+}
+var videoInstances = [];
+function _WebGLMovieTextureCreate(url) {
+ var str = Pointer_stringify(url);
+ var video = document.createElement("video");
+ video.style.display = "none";
+ video.src = str;
+ return videoInstances.push(video) - 1;
+}
+function _WebGLMovieTextureDuration(video) {
+ return videoInstances[video].duration;
+}
+function _WebGLMovieTextureHeight(video) {
+ return videoInstances[video].videoHeight;
+}
+function _WebGLMovieTextureIsReady(video) {
+ return videoInstances[video].readyState >= videoInstances[video].HAVE_CURRENT_DATA;
+}
+function _WebGLMovieTextureLoop(video, loop) {
+ videoInstances[video].loop = loop;
+}
+function _WebGLMovieTexturePause(video) {
+ videoInstances[video].pause();
+}
+function _WebGLMovieTexturePlay(video) {
+ videoInstances[video].play();
+}
+function _WebGLMovieTextureSeek(video, time) {
+ videoInstances[video].fastSeek(time);
+}
+function _WebGLMovieTextureTime(video) {
+ return videoInstances[video].currentTime;
+}
+function _WebGLMovieTextureUpdate(video, tex) {
+ if (videoInstances[video].paused) return;
+ GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[tex]);
+ GLctx.texImage2D(GLctx.TEXTURE_2D, 0, GLctx.RGBA, GLctx.RGBA, GLctx.UNSIGNED_BYTE, videoInstances[video]);
+}
+function _WebGLMovieTextureWidth(video) {
+ return videoInstances[video].videoWidth;
 }
 function ___atomic_compare_exchange_8(ptr, expected, desiredl, desiredh, weak, success_memmodel, failure_memmodel) {
  var pl = HEAP32[ptr >> 2];
@@ -17391,6 +17431,17 @@ Module.asmLibraryArg = {
  "_JS_SystemInfo_HasCursorLock": _JS_SystemInfo_HasCursorLock,
  "_JS_SystemInfo_HasFullscreen": _JS_SystemInfo_HasFullscreen,
  "_JS_SystemInfo_HasWebGL": _JS_SystemInfo_HasWebGL,
+ "_WebGLMovieTextureCreate": _WebGLMovieTextureCreate,
+ "_WebGLMovieTextureDuration": _WebGLMovieTextureDuration,
+ "_WebGLMovieTextureHeight": _WebGLMovieTextureHeight,
+ "_WebGLMovieTextureIsReady": _WebGLMovieTextureIsReady,
+ "_WebGLMovieTextureLoop": _WebGLMovieTextureLoop,
+ "_WebGLMovieTexturePause": _WebGLMovieTexturePause,
+ "_WebGLMovieTexturePlay": _WebGLMovieTexturePlay,
+ "_WebGLMovieTextureSeek": _WebGLMovieTextureSeek,
+ "_WebGLMovieTextureTime": _WebGLMovieTextureTime,
+ "_WebGLMovieTextureUpdate": _WebGLMovieTextureUpdate,
+ "_WebGLMovieTextureWidth": _WebGLMovieTextureWidth,
  "__ZSt18uncaught_exceptionv": __ZSt18uncaught_exceptionv,
  "___atomic_compare_exchange_8": ___atomic_compare_exchange_8,
  "___atomic_fetch_add_8": ___atomic_fetch_add_8,
