@@ -8,7 +8,10 @@ const VIDEO_CODEC = 'VP9';
 function CreateVideoElement(id) {
     let s = document.createElement("video");
     s.setAttribute('id', id);
+    s.setAttribute('width', '400px');
+    s.setAttribute('autoplay');
     document.body.appendChild(s);
+    s.style.display='none';
 }
 //peeridを取得 
 function GetPeerId(yourid) {
