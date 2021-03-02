@@ -74,7 +74,6 @@ function MakeCallLeft(calltoid) {
     call.on('close', function () {    //??なぜか実行された側で発火せず??
         $('#LeftEye-video').get(0).srcObject = undefined;
     });
-    SendMessage('LeftEye', 'MyFunction', 'MyString');
 }
 function MakeCallRight(calltoid) {
     MakeCall(calltoid);
@@ -98,8 +97,7 @@ function EndCall() {
 }
 
 function WebGLTextureUpdate(videoID, tex) {
-    let videoElement = document.getElementById(videoID);
-    let video =videoElement.getAttribute('video');
+    let video = document.getElementById(videoID);
     if (video.paused)
         return;
     GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[tex]);
