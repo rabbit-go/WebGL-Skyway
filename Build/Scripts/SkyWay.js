@@ -6,8 +6,7 @@ const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
 
 function CreateVideoElement(id) {
-    let s = document.createElement("body");
-    s.setAttribute('video', '');
+    let s = document.createElement("video");
     s.setAttribute('id', id);
     document.head.appendChild(s);
 }
