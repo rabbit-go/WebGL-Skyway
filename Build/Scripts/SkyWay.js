@@ -96,7 +96,8 @@ function EndCall() {
 }
 
 function WebGLTextureUpdate(videoID, tex) {
-    var video = document.getElementById(videoID).getAttribute('video');
+    let videoElement = document.getElementById(videoID);
+    let video =videoElement.getAttribute('video');
     if (video.paused)
         return;
     GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[tex]);
