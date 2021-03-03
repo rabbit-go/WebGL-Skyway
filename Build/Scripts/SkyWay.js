@@ -10,7 +10,7 @@ function CreateVideoElement(id) {
     s.setAttribute('id', id);
     s.setAttribute('width', '400px');
     document.body.appendChild(s);
-    s.style.display='none';
+   // s.style.display='none';
 }
 //peeridを取得 
 function GetPeerId(yourid) {
