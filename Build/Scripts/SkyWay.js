@@ -60,7 +60,7 @@ function MakeCall(calltoid) {
 }
 
 function MakeCallLeft(calltoid) {
-    MakeCall(calltoid);
+    let call = MakeCall(calltoid);
     if (existingLeftCall) {
         existingLeftCall.close();
     };
@@ -76,7 +76,7 @@ function MakeCallLeft(calltoid) {
     });
 }
 function MakeCallRight(calltoid) {
-    MakeCall(calltoid);
+    let call =  MakeCall(calltoid);
     if (existingRightCall) {
         existingRightCall.close();
     };
