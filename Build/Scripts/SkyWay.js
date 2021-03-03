@@ -66,13 +66,14 @@ function MakeCallLeft(calltoid) {
     };
 
     existingLeftCall = call;
-
     call.on('stream', function (stream) {
-        $('#LeftEye-video').get(0).srcObject = stream;
+        let video = document.getElementById('LeftEye-video');
+        video.srcObject = stream;
     });
 
     call.on('close', function () {    //??なぜか実行された側で発火せず??
-        $('#LeftEye-video').get(0).srcObject = undefined;
+        let video = document.getElementById('LeftEye-video');
+        video.srcObject = undefined;
     });
 }
 function MakeCallRight(calltoid) {
@@ -82,11 +83,13 @@ function MakeCallRight(calltoid) {
     };
     existingRightCall = call;
     call.on('stream', function (stream) {
-        $('#RightEye-video').get(0).srcObject = stream;
+        let video = document.getElementById('RightEye-video');
+        video.srcObject = stream;
     });
 
     call.on('close', function () {    //??なぜか実行された側で発火せず??
-        $('#RightEye-video').get(0).srcObject = undefined;
+        let video = document.getElementById('RightEye-video');
+        video.srcObject = undefined;
     });
 }
 
