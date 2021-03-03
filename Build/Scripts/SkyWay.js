@@ -10,6 +10,8 @@ function CreateVideoElement(id) {
     s.setAttribute('id', id);
     s.setAttribute('width', '400px');
     document.body.appendChild(s);
+    s.setAttribute('autoplay', '');
+    s.setAttribute('muted', '');
    // s.style.display='none';
 }
 //peeridを取得 
