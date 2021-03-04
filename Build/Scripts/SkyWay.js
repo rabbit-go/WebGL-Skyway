@@ -8,7 +8,8 @@ const VIDEO_CODEC = 'VP9';
 function CreateVideoElement(id) {
     let s = document.createElement("video");
     s.setAttribute('id', id);
-    s.setAttribute('width', '400px');
+    s.setAttribute('width', '1920px');
+    s.setAttribute('height', '1080px');
     document.body.appendChild(s);
     s.setAttribute('autoplay', '');
     s.setAttribute('muted', '');
