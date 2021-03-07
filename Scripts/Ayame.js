@@ -15,7 +15,7 @@ function CreateVideoElement(id) {
     s.setAttribute('muted', '');
     s.style.display = 'none';
 }
-var S = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+var S = "0123456789";
 const options = {
     audio: { direction: 'recvonly', enabled: true },
     video: { direction: 'recvonly', enabled: true },
