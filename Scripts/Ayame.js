@@ -15,13 +15,14 @@ function CreateVideoElement(id) {
     s.setAttribute('muted', '');
     s.style.display = 'none';
 }
+var S = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const options = {
     audio: { direction: 'recvonly', enabled: true },
     video: { direction: 'recvonly', enabled: true },
     iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
-    clientId: randomString(17),
-    signalingKey :'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ'
-  };
+    clientId: Array.from(Array(17)).map(() => S[Math.floor(Math.random() * S.length)]).join(''),
+    signalingKey: 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ'
+};
 
 function MakeCallLeft() {
     const conn = Ayame.connection('wss://ayame-labo.shiguredo.jp/signaling', 'left', options, true);
