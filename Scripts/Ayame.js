@@ -25,10 +25,9 @@ const options = {
 };
 
 function MakeCallLeft() {
-    
-    existingRightCall = conn;
     const startConn = async () => {
         const conn = Ayame.connection(signalingurl, 'left', options, true);
+        existingRightCall = conn;
         await conn.connect(null);
         conn.on('disconnect', (e) => {
             console.log(e);
@@ -42,12 +41,9 @@ function MakeCallLeft() {
 
 }
 function MakeCallRight() {
-    
-    conn.options.video.direction = 'recvonly';
-    conn.options.audio.direction = 'recvonly';
-    existingRightCall = conn;
     const startConn = async () => {
         const conn = Ayame.connection(signalingurl, 'right', options, true);
+        existingRightCall = conn;
         await conn.connect(null);
         conn.on('disconnect', (e) => {
             console.log(e);
