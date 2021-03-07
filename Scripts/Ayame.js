@@ -19,6 +19,7 @@ var S = "0123456789";
 const options = Ayame.defaultOptions;
 
 function MakeCallLeft() {
+    options.video.codec = 'VP9';
     options.video.direction = 'recvonly';
     options.audio.direction = 'recvonly';
     options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
