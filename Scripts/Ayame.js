@@ -27,7 +27,7 @@ const options = {
 function MakeCallLeft() {
     const startConn = async () => {
         const conn = Ayame.connection(signalingurl, 'left', options, true);
-        existingRightCall = conn;
+        existingLeftCall = conn;
         await conn.connect(null);
         conn.on('disconnect', (e) => {
             console.log(e);
