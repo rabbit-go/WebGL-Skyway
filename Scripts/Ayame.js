@@ -4,7 +4,7 @@ let existingLeftCall = null;
 let existingRightCall = null;
 const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
-
+const signalingurl = 'wss://ayame-labo.shiguredo.jp/signaling';
 function CreateVideoElement(id) {
     let s = document.createElement("video");
     s.setAttribute('id', id);
@@ -25,9 +25,10 @@ const options = {
 };
 
 function MakeCallLeft() {
-    const conn = Ayame.connection('wss://ayame-labo.shiguredo.jp/signaling', 'left', options, true);
+    
     existingRightCall = conn;
     const startConn = async () => {
+        const conn = Ayame.connection(signalingurl, 'left', options, true);
         await conn.connect(null);
         conn.on('disconnect', (e) => {
             console.log(e);
@@ -41,11 +42,12 @@ function MakeCallLeft() {
 
 }
 function MakeCallRight() {
-    const conn = Ayame.connection('wss://ayame-labo.shiguredo.jp/signaling', 'right', options, true);
+    
     conn.options.video.direction = 'recvonly';
     conn.options.audio.direction = 'recvonly';
     existingRightCall = conn;
     const startConn = async () => {
+        const conn = Ayame.connection(signalingurl, 'right', options, true);
         await conn.connect(null);
         conn.on('disconnect', (e) => {
             console.log(e);
