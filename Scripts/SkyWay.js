@@ -13,7 +13,7 @@ function CreateVideoElement(id) {
     document.body.appendChild(s);
     s.setAttribute('autoplay', '');
     s.setAttribute('muted', '');
-   // s.style.display='none';
+    s.style.display = 'none';
 }
 //peeridを取得 
 function GetPeerId(yourid) {
@@ -47,10 +47,32 @@ function GetPeerId(yourid) {
         call.answer();
         setupCallEventHandlers(call);
     });
-
-    return null;
 }
 
+
+function MakeCallLeft(calltoid) {
+    let call = MakeCall(calltoid);
+    if (existingLeftCall) {
+        existingLeftCall.close();
+    };
+    existingLeftCall = call;
+    CallEventSubscribe('LeftEye-video');
+
+}
+function MakeCallRight(calltoid) {
+    let call = MakeCall(calltoid);
+    if (existingRightCall) {
+        existingRightCall.close();
+    };
+    existingRightCall = call;
+    CallEventSubscribe('RightEye-video');
+}
+
+//切断処理
+function EndCall() {
+    if (existingLeftCall) existingLeftCall.close();
+    if (existingRightCall) existingRightCall.close();
+}
 //発信処理
 function MakeCall(calltoid) {
     let localStream = null;
@@ -61,58 +83,17 @@ function MakeCall(calltoid) {
     });
     return call;
 }
-
-function MakeCallLeft(calltoid) {
-    let call = MakeCall(calltoid);
-    if (existingLeftCall) {
-        existingLeftCall.close();
-    };
-
-    existingLeftCall = call;
+function CallEventSubscribe(id) {
     call.on('stream', function (stream) {
-        let video = document.getElementById('LeftEye-video');
+        let video = document.getElementById(id);
         video.srcObject = stream;
     });
 
     call.on('close', function () {    //??なぜか実行された側で発火せず??
-        let video = document.getElementById('LeftEye-video');
+        let video = document.getElementById(id);
         video.srcObject = undefined;
     });
 }
-function MakeCallRight(calltoid) {
-    let call =  MakeCall(calltoid);
-    if (existingRightCall) {
-        existingRightCall.close();
-    };
-    existingRightCall = call;
-    call.on('stream', function (stream) {
-        let video = document.getElementById('RightEye-video');
-        video.srcObject = stream;
-    });
-
-    call.on('close', function () {    //??なぜか実行された側で発火せず??
-        let video = document.getElementById('RightEye-video');
-        video.srcObject = undefined;
-    });
-}
-
-//切断処理
-function EndCall() {
-    if (existingLeftCall) existingLeftCall.close();
-    if (existingRightCall) existingRightCall.close();
-}
-
-function WebGLTextureUpdate(videoID, tex) {
-    let video = document.getElementById(videoID);
-    if (video.paused)
-        return;
-    GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[tex]);
-    GLctx.texImage2D(GLctx.TEXTURE_2D, 0, GLctx.RGBA, GLctx.RGBA, GLctx.UNSIGNED_BYTE, $(videoID).get(0));
-}
-
-
-
-
 // Unityと連携するための関数群
 let hoge = function () {
     return {
