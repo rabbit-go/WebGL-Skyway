@@ -26,8 +26,6 @@ const options = {
 
 function MakeCallLeft() {
     const conn = Ayame.connection('wss://ayame-labo.shiguredo.jp/signaling', 'left', options, true);
-    conn.options.video.direction = 'recvonly';
-    conn.options.audio.direction = 'recvonly';
     existingRightCall = conn;
     const startConn = async () => {
         await conn.connect(null);
@@ -43,7 +41,7 @@ function MakeCallLeft() {
 
 }
 function MakeCallRight() {
-    const conn = Ayame.connection('wss://ayame-labo.shiguredo.jp/signaling', 'left', options, true);
+    const conn = Ayame.connection('wss://ayame-labo.shiguredo.jp/signaling', 'right', options, true);
     conn.options.video.direction = 'recvonly';
     conn.options.audio.direction = 'recvonly';
     existingRightCall = conn;
@@ -57,6 +55,7 @@ function MakeCallRight() {
             document.getElementById('RightEye-video').srcObject = e.stream;
         });
     };
+    startConn();
 }
 
 //切断処理
