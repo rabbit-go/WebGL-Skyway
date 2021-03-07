@@ -24,7 +24,7 @@ function MakeCallLeft() {
     options.audio.direction = 'recvonly';
     options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
     const startConn = async () => {
-        const conn = Ayame.connection(signalingurl, 'left', options, true);
+        const conn = Ayame.connection(signalingurl, 'rabbit-go@left', options, true);
         existingLeftCall = conn;
         await conn.connect(null);
         conn.on('disconnect', (e) => {
@@ -43,7 +43,7 @@ function MakeCallRight() {
     options.audio.direction = 'recvonly';
     options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
     const startConn = async () => {
-        const conn = Ayame.connection(signalingurl, 'right', options, true);
+        const conn = Ayame.connection(signalingurl, 'rabbit-go@right, options, true);
         existingRightCall = conn;
         await conn.connect(null);
         conn.on('disconnect', (e) => {
