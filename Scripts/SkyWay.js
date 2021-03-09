@@ -56,7 +56,7 @@ function MakeCallLeft(calltoid) {
         existingLeftCall.close();
     };
     existingLeftCall = call;
-    CallEventSubscribe('LeftEye-video');
+    CallEventSubscribe('LeftEye-video',call);
 
 }
 function MakeCallRight(calltoid) {
@@ -65,7 +65,7 @@ function MakeCallRight(calltoid) {
         existingRightCall.close();
     };
     existingRightCall = call;
-    CallEventSubscribe('RightEye-video');
+    CallEventSubscribe('RightEye-video',call);
 }
 
 //切断処理
@@ -83,7 +83,7 @@ function MakeCall(calltoid) {
     });
     return call;
 }
-function CallEventSubscribe(id) {
+function CallEventSubscribe(id,call) {
     call.on('stream', function (stream) {
         let video = document.getElementById(id);
         video.srcObject = stream;
