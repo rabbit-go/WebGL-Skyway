@@ -16,9 +16,9 @@ function CreateVideoElement(id) {
     s.style.display = 'none';
 }
 var S = "0123456789";
-const options = Ayame.defaultOptions;
 
 function MakeCallLeft() {
+    const options = Ayame.defaultOptions;
     options.video.codec = 'VP9';
     options.video.direction = 'recvonly';
     options.audio.direction = 'recvonly';
@@ -39,6 +39,7 @@ function MakeCallLeft() {
 
 }
 function MakeCallRight() {
+    const options = Ayame.defaultOptions;
     options.video.direction = 'recvonly';
     options.audio.direction = 'recvonly';
     options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
