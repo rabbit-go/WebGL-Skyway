@@ -14,6 +14,7 @@ function CreateVideoElement(id) {
     s.setAttribute('autoplay', '');
     s.setAttribute('muted', '');
    // s.style.display = 'none';
+    s.style.position = 'absolute';
 }
 var S = "0123456789";
 var options;
