@@ -13,7 +13,7 @@ function CreateVideoElement(id) {
     document.body.appendChild(s);
     s.setAttribute('autoplay', '');
     s.setAttribute('muted', '');
-    s.style.display = 'none';
+   // s.style.display = 'none';
 }
 var S = "0123456789";
 var options;
