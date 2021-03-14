@@ -1,4 +1,4 @@
-let peer = null;
+let datapeer = null;
 let existingConn = null;
 
 //初期化(cssでもできるはず)
@@ -8,7 +8,7 @@ function GetPeerId(id) {
     //ボタンをすべて消す　PeerIDがサーバーに残ってしまい初期化ができない
     $('#peerid-ui').hide();
 
-    peer = new Peer(id, {
+    datapeer = new Peer(id, {
         // Set API key for cloud server (you don't need this if you're running your
         // own.
         key: '6cee6718-08d3-4ce7-93a9-237ecd4601bb',
@@ -17,15 +17,15 @@ function GetPeerId(id) {
     });
 
     // Show this peer's ID.
-    peer.on('open', id => {
+    datapeer.on('open', id => {
         $('#my-id').text(id);
     });
 
     //着信処理
-    peer.on('connection', Connect);
+    datapeer.on('connection', Connect);
 
     //エラー
-    peer.on('error', err => {
+    datapeer.on('error', err => {
         $('#console').text(err);
         SetupMakeConnUI();
     });
@@ -35,28 +35,8 @@ function GetPeerId(id) {
 //ID選択
 function UnityGetPeerId(id, theirId) {
     GetPeerId(id);
-    $('#their-id').val(theirId);
 }
 
-$('#twincam').on('click', () => {
-    GetPeerId("twincam");
-    $('#their-id').val("user");
-});
-
-$('#user').on('click', () => {
-    GetPeerId("user");
-    $('#their-id').val("twincam");
-});
-
-$('#sender').on('click', () => {
-    GetPeerId("sender");
-    $('#their-id').val("reciever");
-});
-
-$('#reciever').on('click', () => {
-    GetPeerId("reciever");
-    $('#their-id').val("sender");
-});
 
 // Connect to a peer
 $('#connect').on('submit', e => {
