@@ -90,6 +90,18 @@ let hoge = function () {
             }
             var evalString = methodName + '(' + arg + ')';
             eval(evalString);
+            if(message.callbackGameObjectName==undefined || message.callbackGameObjectName == ""){
+                return;
+            }
+            try 
+            {
+                gameInstance.SendMessage(message.callbackGameObjectName,'GameObjectにアタッチされたコンポーネントのPublic関数名','メッセージ内容');
+            } 
+            catch (error) 
+            {
+                console.log("None GameObject");
+            }
+
         }
     };
 }();
