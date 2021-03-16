@@ -1,82 +1,20 @@
-let datapeer = null;
-let existingConn = null;
-
 //初期化(cssでもできるはず)
 SetupMakeConnUI();
 
-function GetPeerId(id) {
-    //ボタンをすべて消す　PeerIDがサーバーに残ってしまい初期化ができない
-    $('#peerid-ui').hide();
-
-    datapeer = new Peer(id, {
-        // Set API key for cloud server (you don't need this if you're running your
-        // own.
-        key: '6cee6718-08d3-4ce7-93a9-237ecd4601bb',
-        // Set highest debug level (log everything!).
-        debug: 3,
-    });
-
-    // Show this peer's ID.
-    datapeer.on('open', id => {
-        $('#my-id').text(id);
-    });
-
-    //着信処理
-    datapeer.on('connection', Connect);
-
-    //エラー
-    datapeer.on('error', err => {
-        $('#console').text(err);
-        SetupMakeConnUI();
-    });
-
-}
 
 //ID選択
 function UnityGetPeerId(id, theirId) {
-    GetPeerId(id);
+    
 }
 
 
-// Connect to a peer
-$('#connect').on('submit', e => {
-    e.preventDefault();
-    //接続
-    const conn = peer.connect($('#their-id').val());
-    Connect(conn);
-});
+
 
 function UnityConnect(theirId) {
     //接続
     const conn = peer.connect(theirId);
     Connect(conn);
 }
-
-//切断
-$('#close').on('click', () => {
-    existingConn.close();
-});
-
-function UnityClose() {
-    existingConn.close();
-}
-
-//送信ボタン
-$('#send').on('submit', e => {
-    e.preventDefault();
-
-    DataSend($('#message').val());
-
-    //テキストボックスをクリア
-    $('#message').val('');
-    //テキストボックスを選択
-    $('#message').focus();
-});
-
-//リロード
-$('#reload').on('click', () => {
-    location.reload(true);
-});
 
 //送信処理
 function DataSend(msg) {
@@ -112,9 +50,7 @@ function Connect(conn) {
     });
 }
 
-//受信処理
-function DataRecieve(data) {
-}
+
 
 //UI操作
 function SetupMakeConnUI() {

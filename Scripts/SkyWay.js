@@ -5,6 +5,12 @@ let existingRightCall = null;
 const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
 
+class ReturnValue {
+    constructor(Value, MethodName) {
+        this.Value = Value;
+        this.MethodName = MethodName;
+    }
+}
 function CreateVideoElement(id) {
     let s = document.createElement("video");
     s.setAttribute('id', id);
@@ -23,7 +29,7 @@ function GetPeerId(yourid) {
         key: '6cee6718-08d3-4ce7-93a9-237ecd4601bb',    //APIkey
         debug: 3
     });
-
+    
     //イベント id取得後じゃないと動作しない
 
     //openイベント
@@ -56,7 +62,7 @@ function MakeCallLeft(calltoid) {
         existingLeftCall.close();
     };
     existingLeftCall = call;
-    CallEventSubscribe('LeftEye-video',call);
+    CallEventSubscribe('LeftEye-video', call);
 
 }
 function MakeCallRight(calltoid) {
@@ -65,7 +71,7 @@ function MakeCallRight(calltoid) {
         existingRightCall.close();
     };
     existingRightCall = call;
-    CallEventSubscribe('RightEye-video',call);
+    CallEventSubscribe('RightEye-video', call);
 }
 
 //切断処理
@@ -76,14 +82,16 @@ function EndCall() {
 //発信処理
 function MakeCall(calltoid) {
     let localStream = null;
-    const call = peer.call(calltoid, localStream, {     //空の動画を送る
-        videoCodec: VIDEO_CODEC,                        //これを入れないと動画が再生できない
+    const room = peer.joinRoom(calltoid,{
+        mode: "sfu",
+        stream: localStream,
+        videoCodec: VIDEO_CODEC,  
         videoReceiveEnabled: receiveOnly,                 //受信専用としてここで設定
         audioReceiveEnabled: receiveOnly,
     });
-    return call;
+    return room;
 }
-function CallEventSubscribe(id,call) {
+function CallEventSubscribe(id, call) {
     call.on('stream', function (stream) {
         let video = document.getElementById(id);
         video.srcObject = stream;
@@ -93,6 +101,23 @@ function CallEventSubscribe(id,call) {
         let video = document.getElementById(id);
         video.srcObject = undefined;
     });
+}
+//送信処理
+function DataSend(msg) {
+    existingRightCall.send(msg);
+}
+var gameObjectsName = [];
+var methodsName = [];
+
+//受信処理
+function DataRecieve(data) {
+    for (let index = 0; index < gameObjectsName.length; index++) {
+        const gameObjectName = gameObjectsName[index];
+        const methodName = methodsName[index];
+        var value = new ReturnValue(data, methodName);
+        var json = JSON.stringify(value);
+        unityInstance.SendMessage(gameObjectName, "CallBack", json);
+    }
 }
 // Unityと連携するための関数群
 let hoge = function () {
@@ -110,12 +135,30 @@ let hoge = function () {
             }
             var parameterObject = JSON.parse(message);
             var methodName = parameterObject.MethodName;
-            var arg = parameterObject.arg;
+            var arg = parameterObject.Arg;
+            var gameObjectName = parameterObject.GameObject;
+            if(gameObjectName!=undefined){
+                return;
+            }
             if (arg == undefined) {
                 arg = "";
             }
             var evalString = methodName + '(' + arg + ')';
             eval(evalString);
+        },
+              // 受け取ったメッセージから、evalを使って関数を呼び出す
+        RegisterJS: function (message) {
+            if (typeof (message) !== "string" && !(message instanceof String) || message == "null") {
+                return;
+            }
+            var parameterObject = JSON.parse(message);
+            var methodName = parameterObject.MethodName;
+            var gameObjectName = parameterObject.GameObject;
+            if(gameObjectName==undefined){
+                return;
+            }
+            methodsName.push(methodName);
+            gameObjectsName.push(gameObjectName);
         }
     };
 }();
