@@ -20,7 +20,7 @@ function GetPeerId(yourid) {
         key: '829682c4-f853-4d97-8691-aa0c10064efd',    //APIkey
         debug: 3
     });
-    
+
     //イベント id取得後じゃないと動作しない
 
     //openイベント
@@ -73,10 +73,10 @@ function EndCall() {
 //発信処理
 function MakeCall(calltoid) {
     let localStream = null;
-    const room = peer.joinRoom(calltoid,{
+    const room = peer.joinRoom(calltoid, {
         mode: "sfu",
         stream: localStream,
-        videoCodec: VIDEO_CODEC,  
+        videoCodec: VIDEO_CODEC,
         videoReceiveEnabled: receiveOnly,                 //受信専用としてここで設定
         audioReceiveEnabled: receiveOnly,
     });
@@ -117,6 +117,7 @@ let hoge = function () {
         InitializationEventListener: function () {
             window.addEventListener('message', function (event) {
                 hoge.ExecuteJs(event.data);
+                hoge.RegisterJS(event.data);
             }, false);
         },
         // 受け取ったメッセージから、evalを使って関数を呼び出す
@@ -128,7 +129,7 @@ let hoge = function () {
             var methodName = parameterObject.MethodName;
             var arg = parameterObject.Arg;
             var gameObjectName = parameterObject.GameObject;
-            if(gameObjectName!=undefined){
+            if (!(gameObjectName == undefined || gameObjectName == "")) {
                 return;
             }
             if (arg == undefined) {
@@ -137,7 +138,7 @@ let hoge = function () {
             var evalString = methodName + '(' + arg + ')';
             eval(evalString);
         },
-              // 受け取ったメッセージから、evalを使って関数を呼び出す
+        // 受け取ったメッセージから、evalを使って関数を呼び出す
         RegisterJS: function (message) {
             if (typeof (message) !== "string" && !(message instanceof String) || message == "null") {
                 return;
@@ -145,7 +146,7 @@ let hoge = function () {
             var parameterObject = JSON.parse(message);
             var methodName = parameterObject.MethodName;
             var gameObjectName = parameterObject.GameObject;
-            if(gameObjectName==undefined){
+            if ((gameObjectName == undefined || gameObjectName == "")) {
                 return;
             }
             methodsName.push(methodName);
