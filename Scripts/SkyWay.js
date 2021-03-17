@@ -11,16 +11,7 @@ class ReturnValue {
         this.MethodName = MethodName;
     }
 }
-function CreateVideoElement(id) {
-    let s = document.createElement("video");
-    s.setAttribute('id', id);
-    s.setAttribute('width', '1920px');
-    s.setAttribute('height', '1080px');
-    document.body.appendChild(s);
-    s.setAttribute('autoplay', '');
-    s.setAttribute('muted', '');
-    s.style.display = 'none';
-}
+
 //peeridを取得 
 function GetPeerId(yourid) {
 
