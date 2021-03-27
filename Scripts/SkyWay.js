@@ -14,7 +14,6 @@ class ReturnValue {
 
 //peeridを取得 
 function GetPeerId(yourid) {
-
     //peerオブジェクトの作成
     peer = new Peer(yourid, {
         key: '829682c4-f853-4d97-8691-aa0c10064efd',    //APIkey
@@ -45,7 +44,13 @@ function GetPeerId(yourid) {
         setupCallEventHandlers(call);
     });
 }
-
+function GetPersonList() {
+    var element = document.getElementById('name-list');
+    element.innerText = "";
+    existingRightCall.members.forEach(menber => {
+        element.innerText += menber + '\n';
+    });
+}
 
 function MakeCallLeft(calltoid) {
     let call = MakeCall(calltoid);
@@ -110,6 +115,7 @@ function DataRecieve(data) {
         unityInstance.SendMessage(gameObjectName, "CallBack", json);
     }
 }
+
 // Unityと連携するための関数群
 let hoge = function () {
     return {
