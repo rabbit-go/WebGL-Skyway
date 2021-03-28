@@ -44,8 +44,8 @@ function GetPeerId(yourid) {
         setupCallEventHandlers(call);
     });
 }
-function GetPersonList() {
-    var element = document.getElementById('name-list');
+function GetPersonList(id) {
+    var element = document.getElementById(id);
     element.innerText = "";
     existingRightCall.members.forEach(menber => {
         element.innerText += menber + '\n';
