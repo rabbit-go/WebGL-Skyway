@@ -78,6 +78,9 @@ function EndCall() {
 //発信処理
 function MakeCall(calltoid) {
     let localStream = null;
+    if(peer==null){
+        GetPeerId();
+    }
     const room = peer.joinRoom(calltoid, {
         mode: "sfu",
         stream: localStream,
