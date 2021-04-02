@@ -1,14 +1,15 @@
 //初期化(cssでもできるはず)
 SetupMakeConnUI();
+//peeridを取得 
+function GetPeerId(yourid) {
+    //peerオブジェクトの作成
+    peer = new Peer(yourid, {
+        key: '829682c4-f853-4d97-8691-aa0c10064efd',    //APIkey
+        debug: 3
+    });
 
 
-//ID選択
-function UnityGetPeerId(id, theirId) {
-    
 }
-
-
-
 
 function UnityConnect(theirId) {
     //接続
@@ -19,7 +20,6 @@ function UnityConnect(theirId) {
 //送信処理
 function DataSend(msg) {
     existingConn.send(msg);
-    $("#resultSend").text(msg);
 }
 
 //接続イベントの管理
@@ -50,17 +50,3 @@ function Connect(conn) {
     });
 }
 
-
-
-//UI操作
-function SetupMakeConnUI() {
-    $('#connect').show();
-    $('#connected-ui').hide();
-}
-
-function SetupEndConnUI() {
-    $('#connect').hide();
-    $('#connected-ui').show();
-
-    $('#console').text('');
-}
