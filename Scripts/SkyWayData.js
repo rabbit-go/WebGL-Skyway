@@ -1,5 +1,4 @@
-//初期化(cssでもできるはず)
-SetupMakeConnUI();
+
 //peeridを取得 
 function GetPeerId(yourid) {
     //peerオブジェクトの作成
@@ -34,19 +33,19 @@ function Connect(conn) {
 
     //接続が完了した場合のイベント
     conn.on('open', () => {
-        $('#connected-id').text(conn.remoteId);
+       // $('#connected-id').text(conn.remoteId);
     });
 
     //受信
     conn.on('data', data => {
         DataRecieve(data);
-        $('#resultRecieve').text(data);
+     //   $('#resultRecieve').text(data);
     });
 
     //相手が切断したとき
     conn.on('close', () => {
-        $('#console').text(conn.remoteId + ' has left the chat');
-        SetupMakeConnUI();
+      //  $('#console').text(conn.remoteId + ' has left the chat');
+     //   SetupMakeConnUI();
     });
 }
 
