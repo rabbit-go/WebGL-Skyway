@@ -47,8 +47,12 @@ function GetPeerId(yourid) {
 function GetPersonList(id) {
     var element = document.getElementById(id);
     element.innerText = "";
+    if(existingRightCall==null)return;
+    if(existingRightCall.members==null)return;
+    var i=0;
     existingRightCall.members.forEach(menber => {
-        element.innerText += menber + '\n';
+        i++;
+        element.innerText = i + '人';
     });
 }
 
