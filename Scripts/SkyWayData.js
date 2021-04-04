@@ -1,5 +1,5 @@
 //初期化(cssでもできるはず)
-
+var existingDataConn = null;
 function DataConnect(theirId) {
     if(peer == null){
         var peer = //peerオブジェクトの作成
@@ -12,8 +12,8 @@ function DataConnect(theirId) {
 
     //接続
     const conn = peer.connect(theirId);
-   
-}
+    existingDataConn = conn;
+} 
 function DataClose(theirId) {
     
 }
