@@ -105,6 +105,7 @@ function CallEventSubscribe(id, call) {
         video.srcObject = undefined;
     });
 }
+/*
 //送信処理
 function DataSend(msg) {
     existingRightCall.send(msg);
@@ -113,6 +114,7 @@ var gameObjectsName = [];
 var methodsName = [];
 
 //受信処理
+
 function DataRecieve(data) {
     for (let index = 0; index < gameObjectsName.length; index++) {
         const gameObjectName = gameObjectsName[index];
@@ -122,7 +124,7 @@ function DataRecieve(data) {
         unityInstance.SendMessage(gameObjectName, "CallBack", json);
     }
 }
-
+*/
 // Unityと連携するための関数群
 let hoge = function () {
     return {

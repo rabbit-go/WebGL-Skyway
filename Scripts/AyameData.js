@@ -1,6 +1,5 @@
 
 let existingDataconn = null;
-const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
 const signalingurl = 'wss://ayame-labo.shiguredo.jp/signaling';
 let dataChannel = null;
