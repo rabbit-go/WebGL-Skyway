@@ -1,6 +1,5 @@
 
 let existingDataconn = null;
-const VIDEO_CODEC = 'VP9';
 const signalingurl = 'wss://ayame-labo.shiguredo.jp/signaling';
 let dataChannel = null;
 function DataConnect(theirId) {
