@@ -33,6 +33,7 @@ function DataClose() {
 }
 //送信処理
 function DataSend(msg) {
+    if (dataChannel == null) return;
     dataChannel.send(msg);
 }
 function DataReceived() {
