@@ -4,7 +4,6 @@ let existingLeftCall = null;
 let existingRightCall = null;
 const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
-
 class ReturnValue {
     constructor(Value, MethodName) {
         this.Value = Value;
