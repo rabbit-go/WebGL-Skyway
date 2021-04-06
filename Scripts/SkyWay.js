@@ -46,9 +46,9 @@ function GetPeerId(yourid) {
 function GetPersonList(id) {
     var element = document.getElementById(id);
     element.innerText = "";
-    if(existingRightCall==null)return;
-    if(existingRightCall.members==null)return;
-    var i=0;
+    if (existingRightCall == null) return;
+    if (existingRightCall.members == null) return;
+    var i = 0;
     existingRightCall.members.forEach(menber => {
         i++;
         element.innerText = i + '人';
@@ -56,16 +56,18 @@ function GetPersonList(id) {
 }
 
 function MakeCallLeft(calltoid) {
-    let call = MakeCall(calltoid);
-    if (existingLeftCall) {
-        existingLeftCall.close();
-    };
-    existingLeftCall = call;
-    CallEventSubscribe('LeftEye-video', call);
-
-}
+    navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true }, video: false })
+        .then(function (stream) {
+            let call = MakeCall(calltoid, stream);
+            if (existingLeftCall) {
+                existingLeftCall.close();
+            }
+            existingLeftCall = call;
+            CallEventSubscribe('LeftEye-video', call);
+        }
+    }
 function MakeCallRight(calltoid) {
-    let call = MakeCall(calltoid);
+    let call = MakeCall(calltoid, null);
     if (existingRightCall) {
         existingRightCall.close();
     };
@@ -79,9 +81,8 @@ function EndCall() {
     if (existingRightCall) existingRightCall.close();
 }
 //発信処理
-function MakeCall(calltoid) {
-    let localStream = null;
-    if(peer==null){
+function MakeCall(calltoid, localStream) {
+    if (peer == null) {
         GetPeerId();
     }
     const room = peer.joinRoom(calltoid, {
@@ -89,7 +90,6 @@ function MakeCall(calltoid) {
         stream: localStream,
         videoCodec: VIDEO_CODEC,
         videoReceiveEnabled: receiveOnly,                 //受信専用としてここで設定
-        audioReceiveEnabled: receiveOnly,
     });
     return room;
 }
