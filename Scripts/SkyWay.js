@@ -64,8 +64,8 @@ function MakeCallLeft(calltoid) {
             }
             existingLeftCall = call;
             CallEventSubscribe('LeftEye-video', call);
-        }
-    }
+        });
+}
 function MakeCallRight(calltoid) {
     let call = MakeCall(calltoid, null);
     if (existingRightCall) {
@@ -104,26 +104,6 @@ function CallEventSubscribe(id, call) {
         video.srcObject = undefined;
     });
 }
-/*
-//送信処理
-function DataSend(msg) {
-    existingRightCall.send(msg);
-}
-var gameObjectsName = [];
-var methodsName = [];
-
-//受信処理
-
-function DataRecieve(data) {
-    for (let index = 0; index < gameObjectsName.length; index++) {
-        const gameObjectName = gameObjectsName[index];
-        const methodName = methodsName[index];
-        var value = new ReturnValue(data, methodName);
-        var json = JSON.stringify(value);
-        unityInstance.SendMessage(gameObjectName, "CallBack", json);
-    }
-}
-*/
 // Unityと連携するための関数群
 let hoge = function () {
     return {
