@@ -46,10 +46,10 @@ function GetPeerId(yourid) {
 function GetPersonList(id) {
     var element = document.getElementById(id);
     element.innerText = "";
-    if (existingRightCall == null) return;
-    if (existingRightCall.members == null) return;
+    if (existingLeftCall == null) return;
+    if (existingLeftCall.members == null) return;
     var i = 0;
-    existingRightCall.members.forEach(menber => {
+    existingLeftCall.members.forEach(menber => {
         i++;
         element.innerText = i + '人';
     });
