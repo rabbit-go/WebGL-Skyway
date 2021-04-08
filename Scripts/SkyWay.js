@@ -64,8 +64,10 @@ function CallEventSubscribe(id, room) {
     room.on('stream', function (stream) {
         if (!stream.peerId.includes('tc')) {
             let element = document.createElement('audio');
-            element.id = stream.peerId + 'audio';
+            element.setAttribute('id', stream.peerId + 'audio');
             element.src = stream;
+            document.body.appendChild(element);
+            return;
         }
         let video = document.getElementById(id);
         video.srcObject = stream;
