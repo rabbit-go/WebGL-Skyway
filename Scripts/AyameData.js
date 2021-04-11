@@ -10,7 +10,7 @@ function DataConnect(theirId) {
     options.audio.direction = 'recvonly';
     options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
     const startConn = async () => {
-        const conn = Ayame.connection(signalingurl, 'rabbit-go@' + theirId, options, true);
+        const conn = Ayame.connection(signalingurl, 'rabbit-go@data', options, true);
         existingDataconn = conn;
         await conn.connect(null);
         conn.on('open', async (e) => {

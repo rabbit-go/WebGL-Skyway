@@ -4,6 +4,10 @@ let existingLeftCall = null;
 let existingRightCall = null;
 const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
+var roomMode = 'sfu';
+function ChangeRoomMode(mode){
+    roomMode = mode;
+}
 //peeridを取得 
 function GetPeerId(yourid) {
     //peerオブジェクトの作成
@@ -53,7 +57,7 @@ function MakeRoom(calltoid, localStream) {
         GetPeerId();
     }
     const room = peer.joinRoom(calltoid, {
-        mode: "sfu",
+        mode: roomMode,
         stream: localStream,
         videoCodec: VIDEO_CODEC,
         videoReceiveEnabled: receiveOnly,                 //受信専用としてここで設定
@@ -65,7 +69,7 @@ function CallEventSubscribe(id, room) {
         if (!stream.peerId.includes('tc')) {
             let element = document.createElement('audio');
             element.setAttribute('id', stream.peerId + 'audio');
-            element.src = stream;
+            element.srcObject = stream;
             document.body.appendChild(element);
             return;
         }
