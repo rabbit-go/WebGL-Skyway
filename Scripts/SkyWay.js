@@ -5,7 +5,7 @@ let existingRightCall = null;
 const receiveOnly = true;    //受信専用かどうか
 const VIDEO_CODEC = 'VP9';
 var roomMode = 'sfu';
-function ChangeRoomMode(mode){
+function ChangeRoomMode(mode) {
     roomMode = mode;
 }
 //peeridを取得 
@@ -61,6 +61,7 @@ function MakeRoom(calltoid, localStream) {
         stream: localStream,
         videoCodec: VIDEO_CODEC,
         videoReceiveEnabled: receiveOnly,                 //受信専用としてここで設定
+        videoBandWidth: 20000,
     });
     return room;
 }
