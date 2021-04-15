@@ -5,12 +5,9 @@ let dataChannel = null;
 function DataConnect(theirId) {
     var options;
     options = Ayame.defaultOptions;
-    options.video.codec = 'VP9';
-    options.video.direction = 'recvonly';
-    options.audio.direction = 'recvonly';
     options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
     const startConn = async () => {
-        const conn = Ayame.connection(signalingurl, 'rabbit-go@data', options, true);
+        const conn = Ayame.connection(signalingurl, 'rabbit-go@data', options, true,false);
         existingDataconn = conn;
 
         conn.on('open', async (e) => {
