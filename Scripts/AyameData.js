@@ -12,7 +12,7 @@ function DataConnect(theirId) {
     const startConn = async () => {
         const conn = Ayame.connection(signalingurl, 'rabbit-go@data', options, true);
         existingDataconn = conn;
-        await conn.connect(null);
+
         conn.on('open', async (e) => {
             dataChannel = await conn.createDataChannel('dataChannel');
             dataChannel.onmessage = (e) => {
@@ -23,6 +23,7 @@ function DataConnect(theirId) {
             console.log(e);
             existingDataconn = null;
         });
+        await conn.connect(null);
     };
     startConn();
 }
