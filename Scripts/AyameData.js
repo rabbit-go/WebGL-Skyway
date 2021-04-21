@@ -6,15 +6,14 @@ var isConnect = true;
 function DataConnect(theirId) {
     var options;
     options = Ayame.defaultOptions;
+    options.video.codec = 'VP9';
+    options.video.direction = 'recvonly';
+    options.audio.direction = 'recvonly';
     options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
     const startConn = async () => {
-<<<<<<< Updated upstream
-        const conn = Ayame.connection(signalingurl, 'rabbit-go@data', options, true,false);
-=======
         const conn = Ayame.connection(signalingurl, 'rabbit-go@data', options, true);
->>>>>>> Stashed changes
         existingDataconn = conn;
-
+        await conn.connect(null);
         conn.on('open', async (e) => {
             dataChannel = await conn.createDataChannel('dataChannel');
             dataChannel.onmessage = (e) => {
@@ -26,7 +25,6 @@ function DataConnect(theirId) {
             console.log(e);
             existingDataconn = null;
         });
-        await conn.connect(null);
     };
     startConn();
 }

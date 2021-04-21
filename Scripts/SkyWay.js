@@ -70,11 +70,6 @@ function CallEventSubscribe(id, room) {
         if (!stream.peerId.includes('tc')) {
             let element = document.createElement('audio');
             element.setAttribute('id', stream.peerId + 'audio');
-<<<<<<< Updated upstream
-            element.setAttribute('autoplay', '');
-            element.setAttribute('playsinline', '');
-=======
->>>>>>> Stashed changes
             element.srcObject = stream;
             document.body.appendChild(element);
             return;
