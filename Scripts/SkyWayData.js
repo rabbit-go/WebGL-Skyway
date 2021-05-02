@@ -18,7 +18,7 @@ function DataClose(theirId) {
 }
 //送信処理
 function DataSend(msg) {
-    existingConn.send(msg);
+    existingDataConn.send(msg);
 }
 function DataReceived(){
 
