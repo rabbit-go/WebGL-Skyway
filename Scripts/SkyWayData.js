@@ -2,24 +2,18 @@
 var existingDataConn = null;
 let g_theirId =""  ;
 function DataConnect(theirId) {
-    g_theirId = theirId;
-    if(peer == null){
-         return;
-    }
-    //接続
-    const conn = peer.connect(theirId);
-    existingDataConn = conn;
+
 } 
 function DataClose(theirId) {
     
 }
 //送信処理
 function DataSend(msg) {
-    if(existingDataConn==null){
+    if(existingRightCall==null){
         DataConnect(g_theirId);
-        if(existingDataConn==null)return;
+        if(existingRightCall==null)return;
     }
-    existingDataConn.send(msg);
+    existingRightCall.send(msg);
 }
 function DataReceived(){
 
