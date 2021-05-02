@@ -2,8 +2,7 @@
 var existingDataConn = null;
 function DataConnect(theirId) {
     if(peer == null){
-        var peer = //peerオブジェクトの作成
-        peer = new Peer(yourid, {
+         peer = new Peer(theirId, {
             key: '829682c4-f853-4d97-8691-aa0c10064efd',    //APIkey
             debug: 3
         });
