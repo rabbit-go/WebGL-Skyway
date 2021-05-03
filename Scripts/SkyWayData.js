@@ -13,6 +13,7 @@ function DataSend(msg) {
         DataConnect(g_theirId);
         if(existingRightCall==null)return;
     }
+    console.log(msg);
     existingRightCall.send(msg);
 }
 function DataReceived(){
