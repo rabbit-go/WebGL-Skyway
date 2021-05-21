@@ -40,7 +40,25 @@ let hoge = function () {
             }
             methodsName.push(methodName);
             gameObjectsName.push(gameObjectName);
-        }
+        },
+        EnterXRSession: function(){
+            navigator.xr.isSessionSupported('immersive-vr')
+             .then((isSupported) => {
+              if (isSupported) {
+                document.getElementById("entervr").click();
+                return;
+              }
+              else{
+                navigator.xr.isSessionSupported('immersive-ar')
+             .then((isSupported2) => {
+              if (isSupported2) {
+                document.getElementById("enterar").click();
+                return;
+              }
+            });
+              }
+            });  
+          }
     };
 }();
 hoge.InitializationEventListener();
