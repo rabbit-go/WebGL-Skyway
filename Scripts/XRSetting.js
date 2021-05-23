@@ -1,5 +1,4 @@
-
-EnterXRSession: function() {
+function EnterXRSession() {
     navigator.xr.isSessionSupported('immersive-vr')
         .then((isSupported) => {
             if (isSupported) {
