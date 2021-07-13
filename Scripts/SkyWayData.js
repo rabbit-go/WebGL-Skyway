@@ -7,7 +7,7 @@ function DataConnect(theirId) {
 function DataClose(theirId) {
     
 }
-function DataRegistered(){
+function DataRegistered(id){
     var element = document.getElementById(id);
     if(element!=null){
         var element = document.createElement('div');
