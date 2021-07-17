@@ -59,7 +59,7 @@ function startStream() {
 		console.log('record started');
 	}
 	function MicrophoneProcessLR(event) {
-		if (event.inputBuffer.sampleRate === document.microphoneFrequency) {
+		if (event.inputBuffer.sampleRate === 48000) {
 			var leftFloat32Array = event.inputBuffer.getChannelData(0);
 			var stringArray = "";
 
@@ -86,7 +86,7 @@ function startStream() {
 		}
 	}
 	function MicrophoneProcessFB(event) {
-		if (event.inputBuffer.sampleRate === document.microphoneFrequency) {
+		if (event.inputBuffer.sampleRate === 48000) {
 			var leftFloat32Array = event.inputBuffer.getChannelData(0);
 			var stringArray = "";
 
