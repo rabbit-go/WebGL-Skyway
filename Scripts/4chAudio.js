@@ -28,7 +28,6 @@ function startStream() {
 			if (stream != null) {
 				streams[1] = stream;
 				GetUserMediaSuccessFB(stream);
-				startStream();
 			}
 			
 		});
