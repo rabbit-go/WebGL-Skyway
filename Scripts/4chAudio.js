@@ -36,7 +36,7 @@ function startStream() {
 	
 	function GetUserMediaSuccessLR(stream) {
 		document.microphone_stream = document.audioContext.createMediaStreamSource(stream);
-		document.script_processor_node = document.audioContext.createScriptProcessor(4096, 1, 1);
+		document.script_processor_node = document.audioContext.createScriptProcessor(4096, 2, 2);
 		document.script_processor_node.onaudioprocess = MicrophoneProcessLR;
 
 		document.script_processor_node.connect(document.audioContext.destination);
