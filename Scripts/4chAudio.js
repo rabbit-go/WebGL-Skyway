@@ -35,28 +35,18 @@ function startStream() {
 	
 	
 	function GetUserMediaSuccessLR(stream) {
-		document.microphone_stream = document.audioContext.createMediaStreamSource(stream);
-		document.script_processor_node = document.audioContext.createScriptProcessor(4096, 2, 2);
-		document.script_processor_node.onaudioprocess = MicrophoneProcessLR;
-
-		document.script_processor_node.connect(document.audioContext.destination);
-		document.microphone_stream.connect(document.script_processor_node);
-
-		document.isRecording = 1;
-
-		console.log('record started');
+		var microphone_stream = document.audioContext.createMediaStreamSource(stream);
+		var script_processor_node = document.audioContext.createScriptProcessor(4096, 2, 2);
+		script_processor_node.onaudioprocess = MicrophoneProcessLR;
+		script_processor_node.connect(document.audioContext.destination);
+		microphone_stream.connect(script_processor_node);
 	}
 	function GetUserMediaSuccessFB(stream) {
-		document.microphone_stream = document.audioContext.createMediaStreamSource(stream);
-		document.script_processor_node = document.audioContext.createScriptProcessor(4096, 2, 2);
-		document.script_processor_node.onaudioprocess = MicrophoneProcessFB;
-
-		document.script_processor_node.connect(document.audioContext.destination);
-		document.microphone_stream.connect(document.script_processor_node);
-
-		document.isRecording = 1;
-
-		console.log('record started');
+		var microphone_stream = document.audioContext.createMediaStreamSource(stream);
+		var script_processor_node = document.audioContext.createScriptProcessor(4096, 2, 2);
+		script_processor_node.onaudioprocess = MicrophoneProcessFB;
+		script_processor_node.connect(document.audioContext.destination);
+		microphone_stream.connect(script_processor_node);
 	}
 	function MicrophoneProcessLR(event) {
 		if (event.inputBuffer.sampleRate === 48000) {
