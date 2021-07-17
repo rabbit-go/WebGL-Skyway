@@ -27,7 +27,7 @@ function streamInit() {
 			document.audioContext.resume();
 		}
 	}, 500);
-},
+}
 
 function startStream() {
 
@@ -144,9 +144,9 @@ function startStream() {
 		}
 		offlineCtx.startRendering();
 	}
-},
+}
 
-endStream: function (device) {
+function endStream() {
 	if (document.microphone_stream != undefined) {
 		document.microphone_stream.disconnect(document.script_processor_node);
 		document.script_processor_node.disconnect();
@@ -158,12 +158,9 @@ endStream: function (device) {
 	document.isRecording = 0;
 
 	console.log('record ended');
-},
-
-isRecording: function (device) {
+}
+function isRecording() {
 	if (document.isRecording == undefined)
 		document.isRecording = 0;
 	return document.isRecording;
-},
-
-
+}
