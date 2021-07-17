@@ -70,7 +70,7 @@ function startStream() {
 				}
 			}
 
-			gameInstance.SendMessage('Speakers/SpeakerL', 'WriteBufferFromMicrophoneHandler', stringArray);
+			unityInstance.SendMessage('Speakers/SpeakerL', 'WriteBufferFromMicrophoneHandler', stringArray);
 			var leftFloat32Array = event.inputBuffer.getChannelData(1);
 			var stringArray = "";
 
@@ -80,7 +80,7 @@ function startStream() {
 					stringArray = stringArray + ",";
 				}
 			}
-			gameInstance.SendMessage('Speakers/SpeakerR', 'WriteBufferFromMicrophoneHandler', stringArray);
+			unityInstance.SendMessage('Speakers/SpeakerR', 'WriteBufferFromMicrophoneHandler', stringArray);
 		} else {
 			Resample(event.inputBuffer, document.microphoneFrequency);
 		}
@@ -97,7 +97,7 @@ function startStream() {
 				}
 			}
 
-			gameInstance.SendMessage('Speakers/SpeakerF', 'WriteBufferFromMicrophoneHandler', stringArray);
+			unityInstance.SendMessage('Speakers/SpeakerF', 'WriteBufferFromMicrophoneHandler', stringArray);
 			var leftFloat32Array = event.inputBuffer.getChannelData(1);
 			var stringArray = "";
 
@@ -107,7 +107,7 @@ function startStream() {
 					stringArray = stringArray + ",";
 				}
 			}
-			gameInstance.SendMessage('Speakers/SpeakerB', 'WriteBufferFromMicrophoneHandler', stringArray);
+			unityInstance.SendMessage('Speakers/SpeakerB', 'WriteBufferFromMicrophoneHandler', stringArray);
 		} else {
 			Resample(event.inputBuffer, document.microphoneFrequency);
 		}
