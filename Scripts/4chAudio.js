@@ -1,22 +1,5 @@
-const peer = new Peer('client', { key: '829682c4-f853-4d97-8691-aa0c10064efd' });
-const streams = new Array(2);
+
 streamInit();
-peer.on("open", x => {
-	const roomLR = peer.joinRoom("micLR", { mode: "mesh", audioReceiveEnabled: true, videoReceiveEnabled: false, stream: null });
-	const roomFB = peer.joinRoom("micFB", { mode: "mesh", audioReceiveEnabled: true, videoReceiveEnabled: false, stream: null });
-	roomLR.on("stream", stream => {
-		if (stream != null) {
-			streams[0] = stream;
-		}
-	});
-	roomFB.on("stream", stream => {
-		if (stream != null) {
-			streams[1] = stream;
-			startStream();
-		}
-		
-	});
-});
 function streamInit() {
 	var AudioContext = window.AudioContext || window.webkitAudioContext;
 	document.audioContext = new AudioContext();
@@ -30,9 +13,28 @@ function streamInit() {
 }
 
 function startStream() {
-
-	GetUserMediaSuccessLR(streams[0]);
-	GetUserMediaSuccessFB(streams[1]);
+	const peer = new Peer('client', { key: '829682c4-f853-4d97-8691-aa0c10064efd' });
+	const streams = new Array(2);
+	peer.on("open", x => {
+		const roomLR = peer.joinRoom("micLR", { mode: "mesh", audioReceiveEnabled: true, videoReceiveEnabled: false, stream: null });
+		const roomFB = peer.joinRoom("micFB", { mode: "mesh", audioReceiveEnabled: true, videoReceiveEnabled: false, stream: null });
+		roomLR.on("stream", stream => {
+			if (stream != null) {
+				streams[0] = stream;
+				GetUserMediaSuccessLR(stream);
+			}
+		});
+		roomFB.on("stream", stream => {
+			if (stream != null) {
+				streams[1] = stream;
+				GetUserMediaSuccessFB(stream);
+				startStream();
+			}
+			
+		});
+	});
+	
+	
 	function GetUserMediaSuccessLR(stream) {
 		document.microphone_stream = document.audioContext.createMediaStreamSource(stream);
 		document.script_processor_node = document.audioContext.createScriptProcessor(4096, 1, 1);
