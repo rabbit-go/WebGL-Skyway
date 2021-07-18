@@ -35,11 +35,16 @@ function startStream() {
 
 
 	function GetUserMediaSuccessLR(stream) {
-		var microphone_stream = document.audioContext.createMediaStreamSource(stream);
+		var source = document.audioContext.createMediaStreamSource(stream);
+		var element = document.createElement("video");
+          element.id = "audio" + count;
+          element.autoplay = true;
+          document.body.appendChild(element);
+          element.srcObject = stream;
 		var script_processor_node = document.audioContext.createScriptProcessor(4096, 2, 2);
 		script_processor_node.onaudioprocess = MicrophoneProcessLR;
 		script_processor_node.connect(document.audioContext.destination);
-		microphone_stream.connect(script_processor_node);
+		source.connect(script_processor_node);
 	}
 	function GetUserMediaSuccessFB(stream) {
 		var microphone_stream = document.audioContext.createMediaStreamSource(stream);
@@ -56,7 +61,7 @@ function startStream() {
 				stringArray = stringArray + ",";
 			}
 		}
-		unityInstance.SendMessage('Speakers/SpeakerL', 'WriteBufferFromMicrophoneHandler', stringArray);
+		unityInstance.SendMessage(gameObjectName, 'WriteBufferFromMicrophoneHandler', stringArray);
 	}
 	function MicrophoneProcessLR(event) {
 		if (event.inputBuffer.sampleRate === 44100) {
