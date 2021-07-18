@@ -1,24 +1,16 @@
 'use strict';
 let AudioPeer = null;
 var roomMode = 'mesh';
-//peeridを取得 
-function GetPeerId(yourid) {
-    //peerオブジェクトの作成
-    peer = new Peer(yourid, {
-        key: '829682c4-f853-4d97-8691-aa0c10064efd',    //APIkey
-        debug: 3
-    });
-}
 
 async function MakeCallAudio(calltoid) {
     let stream = null;
-    let room = MakeRoom(calltoid, stream);
+    let room = MakeAudioRoom(calltoid, stream);
     CallEventSubscribe(calltoid, room);
 }
 
 
 //発信処理
-function MakeRoom(calltoid, localStream) {
+function MakeAudioRoom(calltoid, localStream) {
     if (peer == null) {
         GetPeerId();
     }
@@ -32,9 +24,10 @@ function MakeRoom(calltoid, localStream) {
     return room;
 }
 var streams = new Array(4);
-function CallEventSubscribe(id, room) {
+function CallAudioEventSubscribe(id, room) {
 
     room.on('stream', async stream => {
+        if(stream==null)return;
         //forward left back right
         stream.getTracks().forEach((track, index) => {
             const tmpStream = new MediaStream([track]);
@@ -53,6 +46,6 @@ function CallEventSubscribe(id, room) {
     });
 }
 //切断処理
-function EndCall() {
+function EndAudioCall() {
     if (AudioPeer) AudioPeer.close();
 }
