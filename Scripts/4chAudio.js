@@ -70,8 +70,7 @@ function startStream() {
 			SpeakerDataSend(event.inputBuffer.getChannelData(1), 'Speakers/SpeakerR');
 
 		} else {
-			Resample(event.inputBuffer, 0, 'Speakers/SpeakerL', 16000);
-			Resample(event.inputBuffer, 1, 'Speakers/SpeakerR', 16000);
+			Resample(event.inputBuffer, 'Speakers/SpeakerL', 'Speakers/SpeakerR', 16000);
 		}
 	}
 	function MicrophoneProcessFB(event) {
@@ -80,12 +79,11 @@ function startStream() {
 			SpeakerDataSend(event.inputBuffer.getChannelData(1), 'Speakers/SpeakerB');
 		}
 		else {
-			Resample(event.inputBuffer, 0, 'Speakers/SpeakerF', 16000);
-			Resample(event.inputBuffer, 1, 'Speakers/SpeakerB', 16000);
+			Resample(event.inputBuffer, 'Speakers/SpeakerF', 'Speakers/SpeakerB', 16000);
 		}
 	}
 
-	function Resample(sourceAudioBuffer, index, targetObjectName, TARGET_SAMPLE_RATE) {
+	function Resample(sourceAudioBuffer, targetObjectName0, targetObjectName1, TARGET_SAMPLE_RATE) {
 		var OfflineAudioContext = window.OfflineAudioContext || window.webkitOfflineAudioContext;
 		var offlineCtx = new OfflineAudioContext(sourceAudioBuffer.numberOfChannels, sourceAudioBuffer.duration * sourceAudioBuffer.numberOfChannels * TARGET_SAMPLE_RATE, TARGET_SAMPLE_RATE);
 		var buffer = offlineCtx.createBuffer(sourceAudioBuffer.numberOfChannels, sourceAudioBuffer.length, sourceAudioBuffer.sampleRate);
@@ -102,8 +100,10 @@ function startStream() {
 			// `resampled` contains an AudioBuffer resampled at 16000Hz.
 			// use resampled.getChannelData(x) to get an Float32Array for channel x.
 			var resampled = e.renderedBuffer;
-			var leftFloat32Array = resampled.getChannelData(index);
-			SpeakerDataSend(leftFloat32Array, targetObjectName);
+			var leftFloat32Array = resampled.getChannelData(0);
+			SpeakerDataSend(leftFloat32Array, targetObjectName0);
+			leftFloat32Array = resampled.getChannelData(1);
+			SpeakerDataSend(leftFloat32Array, targetObjectName1);
 		}
 		offlineCtx.startRendering();
 	}
