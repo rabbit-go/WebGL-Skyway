@@ -32,7 +32,7 @@ function startStream() {
 		roomFB.on("stream", stream => {
 			if (stream != null) {
 				streams[1] = stream;
-				GetUserMediaSuccessFB(stream);
+			//	GetUserMediaSuccessFB(stream);
 			}
 
 		});
