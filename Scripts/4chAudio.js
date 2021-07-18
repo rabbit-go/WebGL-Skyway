@@ -37,7 +37,7 @@ function startStream() {
 	function GetUserMediaSuccessLR(stream) {
 		var source = document.audioContext.createMediaStreamSource(stream);
 		var element = document.createElement("video");
-          element.id = "audio" + count;
+          element.id = "audio";
           element.autoplay = true;
           document.body.appendChild(element);
           element.srcObject = stream;
