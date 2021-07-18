@@ -2,7 +2,7 @@
 streamInit();
 function streamInit() {
 	var AudioContext = window.AudioContext || window.webkitAudioContext;
-	document.audioContext = new AudioContext();
+	document.audioContext = new AudioContext({sampleRate: 16000});
 
 	setInterval(function () {
 		if (document.audioContext.state === "suspended" || document.audioContext.state === "interrupted") {
