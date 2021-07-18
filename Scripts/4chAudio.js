@@ -29,11 +29,11 @@ function startStream() {
 				streams[1] = stream;
 				GetUserMediaSuccessFB(stream);
 			}
-			
+
 		});
 	});
-	
-	
+
+
 	function GetUserMediaSuccessLR(stream) {
 		var microphone_stream = document.audioContext.createMediaStreamSource(stream);
 		var script_processor_node = document.audioContext.createScriptProcessor(4096, 2, 2);
@@ -48,62 +48,38 @@ function startStream() {
 		script_processor_node.connect(document.audioContext.destination);
 		microphone_stream.connect(script_processor_node);
 	}
+	function SpeakerDataSend(channnelData,gameObjectName){
+		var stringArray = "":
+		for (var i = 0; i < channnelData.length; i++) {
+			stringArray = stringArray + channnelData[i];
+			if (i < channnelData.length - 1) {
+				stringArray = stringArray + ",";
+			}
+		}
+		unityInstance.SendMessage('Speakers/SpeakerL', 'WriteBufferFromMicrophoneHandler', stringArray);
+	}
 	function MicrophoneProcessLR(event) {
-		if (event.inputBuffer.sampleRate === 48000) {
-			var leftFloat32Array = event.inputBuffer.getChannelData(0);
-			var stringArray = "";
-
-			for (var i = 0; i < leftFloat32Array.length; i++) {
-				stringArray = stringArray + leftFloat32Array[i];
-				if (i < leftFloat32Array.length - 1) {
-					stringArray = stringArray + ",";
-				}
-			}
-
-			unityInstance.SendMessage('Speakers/SpeakerL', 'WriteBufferFromMicrophoneHandler', stringArray);
-			var leftFloat32Array = event.inputBuffer.getChannelData(1);
-			var stringArray = "";
-
-			for (var i = 0; i < leftFloat32Array.length; i++) {
-				stringArray = stringArray + leftFloat32Array[i];
-				if (i < leftFloat32Array.length - 1) {
-					stringArray = stringArray + ",";
-				}
-			}
-			unityInstance.SendMessage('Speakers/SpeakerR', 'WriteBufferFromMicrophoneHandler', stringArray);
+		if (event.inputBuffer.sampleRate === 44100) {
+			SpeakerDataSend(event.inputBuffer.getChannelData(0),'Speakers/SpeakerL');
+			SpeakerDataSend(event.inputBuffer.getChannelData(1),'Speakers/SpeakerR');
+			
 		} else {
-			Resample(event.inputBuffer, document.microphoneFrequency);
+			Resample(event.inputBuffer,0,'Speakers/SpeakerL',44100);
+			Resample(event.inputBuffer,1,'Speakers/SpeakerR',44100);
 		}
 	}
 	function MicrophoneProcessFB(event) {
-		if (event.inputBuffer.sampleRate === 48000) {
-			var leftFloat32Array = event.inputBuffer.getChannelData(0);
-			var stringArray = "";
-
-			for (var i = 0; i < leftFloat32Array.length; i++) {
-				stringArray = stringArray + leftFloat32Array[i];
-				if (i < leftFloat32Array.length - 1) {
-					stringArray = stringArray + ",";
-				}
-			}
-
-			unityInstance.SendMessage('Speakers/SpeakerF', 'WriteBufferFromMicrophoneHandler', stringArray);
-			var leftFloat32Array = event.inputBuffer.getChannelData(1);
-			var stringArray = "";
-
-			for (var i = 0; i < leftFloat32Array.length; i++) {
-				stringArray = stringArray + leftFloat32Array[i];
-				if (i < leftFloat32Array.length - 1) {
-					stringArray = stringArray + ",";
-				}
-			}
-			unityInstance.SendMessage('Speakers/SpeakerB', 'WriteBufferFromMicrophoneHandler', stringArray);
-		} else {
-			Resample(event.inputBuffer, document.microphoneFrequency);
+		if (event.inputBuffer.sampleRate === 44100) {
+		SpeakerDataSend(event.inputBuffer.getChannelData(0),'Speakers/SpeakerF');
+		SpeakerDataSend(event.inputBuffer.getChannelData(1),'Speakers/SpeakerB');
+		}
+		else{
+			Resample(event.inputBuffer,0,'Speakers/SpeakerF',44100);
+			Resample(event.inputBuffer,1,'Speakers/SpeakerB',44100);
 		}
 	}
 
-	function Resample(sourceAudioBuffer, TARGET_SAMPLE_RATE) {
+	function Resample(sourceAudioBuffer,index,targetObjectName, TARGET_SAMPLE_RATE) {
 		var OfflineAudioContext = window.OfflineAudioContext || window.webkitOfflineAudioContext;
 		var offlineCtx = new OfflineAudioContext(sourceAudioBuffer.numberOfChannels, sourceAudioBuffer.duration * sourceAudioBuffer.numberOfChannels * TARGET_SAMPLE_RATE, TARGET_SAMPLE_RATE);
 		var buffer = offlineCtx.createBuffer(sourceAudioBuffer.numberOfChannels, sourceAudioBuffer.length, sourceAudioBuffer.sampleRate);
@@ -120,18 +96,8 @@ function startStream() {
 			// `resampled` contains an AudioBuffer resampled at 16000Hz.
 			// use resampled.getChannelData(x) to get an Float32Array for channel x.
 			var resampled = e.renderedBuffer;
-			var leftFloat32Array = resampled.getChannelData(0);
-			// use this float32array to send the samples to the server or whatever
-			var stringArray = "";
-
-			for (var i = 0; i < leftFloat32Array.length; i++) {
-				stringArray = stringArray + leftFloat32Array[i];
-				if (i < leftFloat32Array.length - 1) {
-					stringArray = stringArray + ",";
-				}
-			}
-
-			SendMessage('[FG]Microphone', 'WriteBufferFromMicrophoneHandler', stringArray);
+			var leftFloat32Array = resampled.getChannelData(index);
+			SpeakerDataSend(leftFloat32Array,targetObjectName);
 		}
 		offlineCtx.startRendering();
 	}
