@@ -2,7 +2,7 @@
 streamInit();
 function streamInit() {
 	var AudioContext = window.AudioContext || window.webkitAudioContext;
-	document.audioContext = new AudioContext({sampleRate: 16000});
+	document.audioContext = new AudioContext({ sampleRate: 16000 });
 
 	setInterval(function () {
 		if (document.audioContext.state === "suspended" || document.audioContext.state === "interrupted") {
@@ -21,11 +21,11 @@ function startStream() {
 		roomLR.on("stream", stream => {
 			if (stream != null) {
 				streams[0] = stream;
-			//	var element = document.createElement("video");
-			//	element.id = "audio1";
-			//	element.autoplay = true;
-			//	document.body.appendChild(element);
-			//	element.srcObject = stream;
+				var element = document.createElement("video");
+				element.id = "audio1";
+				element.autoplay = true;
+				document.body.appendChild(element);
+				element.srcObject = stream;
 				GetUserMediaSuccessLR(stream);
 			}
 		});
