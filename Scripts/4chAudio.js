@@ -37,9 +37,6 @@ function startStream() {
 	async function GetUserMediaSuccessLR(stream) {
 
 		var source = document.audioContext.createMediaStreamSource(stream);
-		await document.audioContext.audioWorklet.addModule('SpilliterNode.js')
-		const whiteNoiseNode = new AudioWorkletNode(audioContext, 'spilliterNode')
-		whiteNoiseNode.connect(audioContext.destination)
 		var script_processor_node = document.audioContext.createScriptProcessor(4096, 2, 2);
 		script_processor_node.onaudioprocess = MicrophoneProcessLR;
 		script_processor_node.connect(document.audioContext.destination);
