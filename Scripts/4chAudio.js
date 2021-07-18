@@ -49,7 +49,7 @@ function startStream() {
 		microphone_stream.connect(script_processor_node);
 	}
 	function SpeakerDataSend(channnelData,gameObjectName){
-		var stringArray = "":
+		var stringArray = "";
 		for (var i = 0; i < channnelData.length; i++) {
 			stringArray = stringArray + channnelData[i];
 			if (i < channnelData.length - 1) {
