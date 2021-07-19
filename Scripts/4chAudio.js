@@ -24,7 +24,7 @@ function startStream() {
 				var element = document.createElement("video");
 				element.id = "audio1";
 				element.autoplay = true;
-				element.mute = true;
+				element.muted = true;
 				document.body.appendChild(element);
 				element.srcObject = stream;
 				GetUserMediaSuccessLR(stream);
@@ -36,7 +36,7 @@ function startStream() {
 				var element = document.createElement("video");
 				element.id = "audio2";
 				element.autoplay = true;
-				element.mute = true;
+				element.muted = true;
 				document.body.appendChild(element);
 				element.srcObject = stream;
 				GetUserMediaSuccessFB(stream);
