@@ -21,12 +21,24 @@ function startStream() {
 		roomLR.on("stream", stream => {
 			if (stream != null) {
 				streams[0] = stream;
+				var element = document.createElement("video");
+				element.id = "audio1";
+				element.autoplay = true;
+				element.mute = true;
+				document.body.appendChild(element);
+				element.srcObject = stream;
 				GetUserMediaSuccessLR(stream);
 			}
 		});
 		roomFB.on("stream", stream => {
 			if (stream != null) {
 				streams[1] = stream;
+				var element = document.createElement("video");
+				element.id = "audio2";
+				element.autoplay = true;
+				element.mute = true;
+				document.body.appendChild(element);
+				element.srcObject = stream;
 				GetUserMediaSuccessFB(stream);
 			}
 
