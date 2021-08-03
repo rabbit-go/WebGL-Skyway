@@ -1,16 +1,4 @@
 
-streamInit();
-function streamInit() {
-	var AudioContext = window.AudioContext || window.webkitAudioContext;
-	document.audioContext = new AudioContext({ sampleRate: 16000 });
-
-	setInterval(function () {
-		if (document.audioContext.state === "suspended" || document.audioContext.state === "interrupted") {
-			console.log("resuming audioContext. state: " + document.audioContext.state);
-			document.audioContext.resume();
-		}
-	}, 500);
-}
 // Super version: http://chromium.googlecode.com/svn/trunk/samples/audio/simple.html
 class Vector2 {
     x = 0.0;
@@ -46,11 +34,11 @@ class Vector2 {
 
       navigator.mediaDevices.getUserMedia ({audio: true, video: false})
       .then(function(stream) {
-        const source = new MediaStreamAudioSourceNode(this.audioCtx, { mediaStream: stream });
-        const panner = new PannerNode(this.audioCtx, { panningModel: "HRTF" });
+        const source = new MediaStreamAudioSourceNode(document.audioContext, { mediaStream: stream });
+        const panner = new PannerNode(document.audioContext, { panningModel: "HRTF" });
         // Set the panner node to be at the origin looking in the +x
       // direction.
-      source.connect(this.audioCtx.destination);
+      source.connect(document.audioContext.destination);
       });
 
       // Set the panner node to be at the origin looking in the +x
