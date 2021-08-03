@@ -1,6 +1,13 @@
 
 // Super version: http://chromium.googlecode.com/svn/trunk/samples/audio/simple.html
-
+class Vector2 {
+    x = 0.0;
+    y = 0.0;
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
 class PositionSample {
     audioCtx = new (window.AudioContext)();
     isPlaying = false;
