@@ -44,7 +44,7 @@ class Vector2 {
 
       // Set the panner node to be at the origin looking in the +x
       // direction.
-      source.connect(document.audioContext.destination);
+     // source.connect(document.audioContext.destination);
       // Position the listener at the origin.
       this.audioCtx.listener.setPosition(0, 0, 0);
       return panner;
