@@ -1,4 +1,16 @@
 
+streamInit();
+function streamInit() {
+	var AudioContext = window.AudioContext || window.webkitAudioContext;
+	document.audioContext = new AudioContext({ sampleRate: 16000 });
+
+	setInterval(function () {
+		if (document.audioContext.state === "suspended" || document.audioContext.state === "interrupted") {
+			console.log("resuming audioContext. state: " + document.audioContext.state);
+			document.audioContext.resume();
+		}
+	}, 500);
+}
 // Super version: http://chromium.googlecode.com/svn/trunk/samples/audio/simple.html
 class Vector2 {
     x = 0.0;
@@ -9,11 +21,11 @@ class Vector2 {
     }
   }
   class PositionSample {
-    audioCtx = new (window.AudioContext)();
+    audioCtx = document.audioContext;
     isPlaying = false;
     createPanner(stream) {
        var audio =  document.createElement('audio');
-       audio.srcObject = stream;
+      // audio.srcObject = stream;
       // Hook up the audio graph for this sample.
       const source = new MediaStreamAudioSourceNode(this.audioCtx, { mediaStream: stream });
       const panner = new PannerNode(this.audioCtx, { panningModel: "HRTF" });
