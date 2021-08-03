@@ -15,9 +15,19 @@ class Vector2 {
       // Hook up the audio graph for this sample.
       const source = new MediaStreamAudioSourceNode(this.audioCtx, { mediaStream: stream });
       const panner = new PannerNode(this.audioCtx, { panningModel: "HRTF" });
-      panner.coneOuterGain = 0.1;
-      panner.coneOuterAngle = 360;
-      panner.coneInnerAngle = 0;
+      //panner.coneOuterGain = 0.1;
+     // panner.coneOuterAngle = 360;
+      //panner.coneInnerAngle = 0;
+
+      panner.panningModel = 'HRTF';
+      panner.distanceModel = 'inverse';
+      panner.refDistance = 1;
+      panner.maxDistance = 10000;
+      panner.rolloffFactor = 1;
+      panner.coneInnerAngle = 360;
+      panner.coneOuterAngle = 0;
+      panner.coneOuterGain = 0;
+
       // Set the panner node to be at the origin looking in the +x
       // direction.
       source.connect(panner).connect(this.audioCtx.destination);
