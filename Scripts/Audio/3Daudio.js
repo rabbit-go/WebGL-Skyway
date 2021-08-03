@@ -33,18 +33,11 @@ class Vector2 {
       panner.coneOuterGain = 0;
 
 
-      navigator.mediaDevices.getUserMedia ({audio: true, video: false})
-      .then(function(stream) {
-      //  const source = new MediaStreamAudioSourceNode(document.audioContext, { mediaStream: stream });
-        const panner = new PannerNode(document.audioContext, { panningModel: "HRTF" });
-        // Set the panner node to be at the origin looking in the +x
-      // direction.
-     // source.connect(document.audioContext.destination);
-      });
+
 
       // Set the panner node to be at the origin looking in the +x
       // direction.
-     // source.connect(document.audioContext.destination);
+      source.connect(document.audioContext.destination);
       // Position the listener at the origin.
       this.audioCtx.listener.setPosition(0, 0, 0);
       return panner;
