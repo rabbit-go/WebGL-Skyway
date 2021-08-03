@@ -38,7 +38,7 @@ class Vector2 {
         const panner = new PannerNode(document.audioContext, { panningModel: "HRTF" });
         // Set the panner node to be at the origin looking in the +x
       // direction.
-      //source.connect(document.audioContext.destination);
+      source.connect(document.audioContext.destination);
       });
 
       // Set the panner node to be at the origin looking in the +x
