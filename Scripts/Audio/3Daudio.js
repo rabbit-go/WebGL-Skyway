@@ -11,11 +11,11 @@ class PositionSample {
         panner.coneInnerAngle = 0;
         // Set the panner node to be at the origin looking in the +x
         // direction.
-        panner.connect(context.destination);
+        panner.connect(document.audioContext.destination);
         source.connect(panner);
         source.start(0);
         // Position the listener at the origin.
-        context.listener.setPosition(0, 0, 0);
+        document.audioContext.listener.setPosition(0, 0, 0);
         return panner;
     }
 
@@ -55,11 +55,11 @@ class PositionSample {
         panner.coneInnerAngle = 0;
         // Set the panner node to be at the origin looking in the +x
         // direction.
-        panner.connect(context.destination);
+        panner.connect(document.audioContext.destination);
         source.connect(panner);
         source.start(0);
         // Position the listener at the origin.
-        context.listener.setPosition(0, 0, 0);
+        document.audioContext.listener.setPosition(0, 0, 0);
         return panner;
     }
 
