@@ -4,24 +4,23 @@ class Vector2 {
     x = 0.0;
     y = 0.0;
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+      this.x = x;
+      this.y = y;
     }
-}
-class PositionSample {
+  }
+  class PositionSample {
     audioCtx = new (window.AudioContext)();
     isPlaying = false;
     createPanner(stream) {
       // Hook up the audio graph for this sample.
-      var source = this.audioCtx.createMediaStreamSource(stream);
-      var panner = this.audioCtx.createPanner();
+      const source = new MediaStreamAudioSourceNode(this.audioCtx, { mediaStream: stream });
+      const panner = new PannerNode(this.audioCtx, { panningModel: "HRTF" });
       panner.coneOuterGain = 0.1;
-      panner.coneOuterAngle = 180;
+      panner.coneOuterAngle = 360;
       panner.coneInnerAngle = 0;
       // Set the panner node to be at the origin looking in the +x
       // direction.
-      panner.connect(this.audioCtx.destination);
-      source.connect(panner);
+      source.connect(panner).connect(this.audioCtx.destination);
       // Position the listener at the origin.
       this.audioCtx.listener.setPosition(0, 0, 0);
       return panner;
