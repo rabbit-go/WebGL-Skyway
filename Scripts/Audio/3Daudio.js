@@ -14,6 +14,7 @@ class Vector2 {
     createPanner(stream) {
         
        var audio =  document.createElement('audio');
+       document.head.appendChild(audio);
        audio.srcObject = stream;
        audio.muted = true;
       // Hook up the audio graph for this sample.
