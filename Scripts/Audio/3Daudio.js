@@ -94,33 +94,33 @@ function startStream() {
         roomRF.on("stream", stream => {
             if (stream != null) {
                 streams[0] = stream;
-                StartDirectionAudio();
+                StartDirectionAudio(streams);
             }
         });
         roomRB.on("stream", stream => {
             if (stream != null) {
                 streams[1] = stream;
-                StartDirectionAudio();
+                StartDirectionAudio(streams);
             }
 
         });
         roomLF.on("stream", stream => {
             if (stream != null) {
                 streams[2] = stream;
-                StartDirectionAudio();
+                StartDirectionAudio(streams);
             }
 
         });
         roomLB.on("stream", stream => {
             if (stream != null) {
                 streams[3] = stream;
-                StartDirectionAudio();
+                StartDirectionAudio(streams);
             }
 
         });
     });
 }
-function StartDirectionAudio() {
+function StartDirectionAudio(streams) {
     for (let i = 0; i < streams.length; i++) {
         if (streams[i] == null) { return; }
     }
