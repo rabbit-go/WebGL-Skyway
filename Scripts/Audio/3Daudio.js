@@ -14,7 +14,7 @@ class Vector2 {
     createPanner(stream) {
         
        var audio =  document.createElement('audio');
-      audio.srcObject = stream;
+     // audio.srcObject = stream;
       // Hook up the audio graph for this sample.
       const source = new MediaStreamAudioSourceNode(document.audioContext, { mediaStream: stream });
       const panner = new PannerNode(document.audioContext, { panningModel: "HRTF" });
