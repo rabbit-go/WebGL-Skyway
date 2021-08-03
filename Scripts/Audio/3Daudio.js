@@ -86,7 +86,7 @@ class PositionSample {
   
     for (let i = 0; i < streams.length; i++) {
       var panner = positionSample.createPanner(streams[i]);
-      let position = new Vector2(cos(90 + (90 * i)), sin(90 + (90 * i)))
+      let position = new Vector2(Math.cos(90 + (90 * i)), Math.sin(90 + (90 * i)))
       let angle = 180 + (90 * i);
       positionSample.changePosition(panner, position);
       positionSample.changeAngle(panner, angle);
