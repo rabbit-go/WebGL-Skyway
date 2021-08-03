@@ -16,8 +16,8 @@ class Vector2 {
        var audio =  document.createElement('audio');
       // audio.srcObject = stream;
       // Hook up the audio graph for this sample.
-      const source = new MediaStreamAudioSourceNode(this.audioCtx, { mediaStream: stream });
-      const panner = new PannerNode(this.audioCtx, { panningModel: "HRTF" });
+      const source = new MediaStreamAudioSourceNode(document.audioContext, { mediaStream: stream });
+      const panner = new PannerNode(document.audioContext, { panningModel: "HRTF" });
       //panner.coneOuterGain = 0.1;
      // panner.coneOuterAngle = 360;
       //panner.coneInnerAngle = 0;
@@ -34,16 +34,16 @@ class Vector2 {
 
       navigator.mediaDevices.getUserMedia ({audio: true, video: false})
       .then(function(stream) {
-        const source = new MediaStreamAudioSourceNode(document.audioContext, { mediaStream: stream });
+       // const source = new MediaStreamAudioSourceNode(document.audioContext, { mediaStream: stream });
         const panner = new PannerNode(document.audioContext, { panningModel: "HRTF" });
         // Set the panner node to be at the origin looking in the +x
       // direction.
-      source.connect(document.audioContext.destination);
+      //source.connect(document.audioContext.destination);
       });
 
       // Set the panner node to be at the origin looking in the +x
       // direction.
-      source.connect(this.audioCtx.destination);
+      source.connect(document.audioContext);
       // Position the listener at the origin.
       this.audioCtx.listener.setPosition(0, 0, 0);
       return panner;
