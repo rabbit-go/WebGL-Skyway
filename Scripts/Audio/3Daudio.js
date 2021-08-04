@@ -31,7 +31,7 @@ class PositionSample {
         panner.refDistance = 1;
         panner.maxDistance = 10000;
         panner.rolloffFactor = 1;
-        panner.coneInnerAngle = 120;
+        panner.coneInnerAngle = 360;
         panner.coneOuterAngle = 0;
         panner.coneOuterGain = 0;
 
