@@ -29,8 +29,8 @@ function GetPersonList(id) {
 }
 
 async function MakeCallLeft(calltoid) {
-    let stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true }, video: false });
-    let room = MakeRoom(calltoid, stream);
+    //let stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true }, video: false });
+    let room = MakeRoom(calltoid, null);
     if (existingLeftCall) {
         existingLeftCall.close();
     }
