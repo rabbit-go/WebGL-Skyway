@@ -26,7 +26,7 @@ class PositionSample {
         // panner.coneOuterAngle = 360;
         //panner.coneInnerAngle = 0;
 
-        panner.panningModel = 'HRTF';
+        panner.panningModel = 'equalpower';
         panner.distanceModel = 'inverse';
         panner.refDistance = 3;
         panner.maxDistance = 10000;
