@@ -42,7 +42,7 @@ class PositionSample {
         // direction.
         source.connect(panner).connect(document.audioContext.destination);
         // Position the listener at the origin.
-        document.audioContext.setPosition(0, 0, 0);
+        document.audioContext.listener.setPosition(0, 0, 0);
         return panner;
     }
 
