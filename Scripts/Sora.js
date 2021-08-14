@@ -25,26 +25,25 @@ function MakeCall(yourid) {
     });
     recvonlyR.on("track", (event) => {
         const stream = event.streams[0];
-        if (stream.id.includes('cam')) {
-            let video = document.getElementById('RightEye-video');
-            video.srcObject = stream;
-        }
+        const stream = event.streams[0];
+        let video = document.getElementById('RightEye-video');
+        video.srcObject = stream;
+
     });
     recvonlyR.on("removetrack", (event) => {
-        if (event.target.id.includes('cam')) {
-            let video = document.getElementById('RightEye-video');
-            video.srcObject = null;
-        }
+        let video = document.getElementById('RightEye-video');
+        video.srcObject = null;
+
     });
 }
 function MakeCallfunc(yourid, camerastr) {
     let recvonly;
-    recvonly = sora.recvonly(yourid, null, options);
-    recvonly.connect();
+    recvonly = sora.recvonly(channelId + camerastr, null, options);
+    
     recvonly.metadata = {
-        "channel_id": channelId + camerastr,
         'signaling_key': 'k9eVLAMOzNGKUy0SbmjJgsho8Dh7afWvpc2AF1KDb3av86jY'
     };
+    recvonly.connect();
     return recvonly;
 }
 function GetPersonList(id) {
