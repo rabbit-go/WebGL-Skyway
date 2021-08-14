@@ -1,6 +1,6 @@
 const channelId = 'rabbit-go@twincam';
 const debug = false;
-const sora;
+var sora = null;
 const options = {
     multistream: true
 }
