@@ -12,16 +12,14 @@ function MakeCall(yourid) {
     recvonlyR = MakeCallfunc(yourid, "right");
     recvonlyL.on("track", (event) => {
         const stream = event.streams[0];
-        if (stream.id.includes('cam')) {
-            let video = document.getElementById('LeftEye-video');
-            video.srcObject = stream;
-        }
+        let video = document.getElementById('LeftEye-video');
+        video.srcObject = stream;
+
     });
     recvonlyL.on("removetrack", (event) => {
-        if (event.target.id.includes('cam')) {
-            let video = document.getElementById('LeftEye-video');
-            video.srcObject = null;
-        }
+        let video = document.getElementById('LeftEye-video');
+        video.srcObject = null;
+
     });
     recvonlyR.on("track", (event) => {
         const stream = event.streams[0];
@@ -38,7 +36,7 @@ function MakeCall(yourid) {
 function MakeCallfunc(yourid, camerastr) {
     let recvonly;
     recvonly = sora.recvonly(channelId + camerastr, null, options);
-    
+
     recvonly.metadata = {
         'signaling_key': 'k9eVLAMOzNGKUy0SbmjJgsho8Dh7afWvpc2AF1KDb3av86jY'
     };
