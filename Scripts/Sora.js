@@ -25,7 +25,6 @@ function MakeCall(yourid) {
     });
     recvonlyR.on("track", (event) => {
         const stream = event.streams[0];
-        const stream = event.streams[0];
         let video = document.getElementById('RightEye-video');
         video.srcObject = stream;
 
