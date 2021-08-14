@@ -2,7 +2,7 @@ const channelId = 'rabbit-go@twincam';
 const debug = false;
 var sora = null;
 const options = {
-    multistream: true
+    videoBitRate: 15000
 }
 var recvonlyL;
 var recvonlyR;
