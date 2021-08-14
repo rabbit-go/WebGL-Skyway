@@ -1,20 +1,51 @@
-const channelId = 'rabbit-go@sora-labo-multi-sample';
+const channelId = 'rabbit-go@twincam';
 const debug = false;
-const sora = Sora.connection('wss://sora-labo.shiguredo.jp/signaling', debug);
+const sora;
 const options = {
     multistream: true
 }
-let sendrecv1;
-let sendrecv2;
-function GetPeerId(channelId) {
-    sendrecv1 = sora.sendrecv(channelId, null, options);
-    sendrecv2 = sora.sendrecv(channelId, null, options);
-    sendrecv1.metadata = {
+var recvonlyL;
+var recvonlyR;
+function MakeCall(yourid) {
+    sora = Sora.connection('wss://sora-labo.shiguredo.jp/signaling', debug);
+    recvonlyL = MakeCallfunc(yourid, "left");
+    recvonlyR = MakeCallfunc(yourid, "right");
+    recvonlyL.on("track", (event) => {
+        const stream = event.streams[0];
+        if (stream.id.includes('cam')) {
+            let video = document.getElementById('LeftEye-video');
+            video.srcObject = stream;
+        }
+    });
+    recvonlyL.on("removetrack", (event) => {
+        if (event.target.id.includes('cam')) {
+            let video = document.getElementById('LeftEye-video');
+            video.srcObject = null;
+        }
+    });
+    recvonlyR.on("track", (event) => {
+        const stream = event.streams[0];
+        if (stream.id.includes('cam')) {
+            let video = document.getElementById('RightEye-video');
+            video.srcObject = stream;
+        }
+    });
+    recvonlyR.on("removetrack", (event) => {
+        if (event.target.id.includes('cam')) {
+            let video = document.getElementById('RightEye-video');
+            video.srcObject = null;
+        }
+    });
+}
+function MakeCallfunc(yourid, camerastr) {
+    let recvonly;
+    recvonly = sora.recvonly(yourid, null, options);
+    recvonly.connect();
+    recvonly.metadata = {
+        "channel_id": channelId + camerastr,
         'signaling_key': 'k9eVLAMOzNGKUy0SbmjJgsho8Dh7afWvpc2AF1KDb3av86jY'
     };
-    sendrecv2.metadata = {
-        'signaling_key': 'k9eVLAMOzNGKUy0SbmjJgsho8Dh7afWvpc2AF1KDb3av86jY'
-    };
+    return recvonly;
 }
 function GetPersonList(id) {
     var element = document.getElementById(id);
@@ -28,40 +59,13 @@ function GetPersonList(id) {
     });
 }
 
-async function MakeCallLeft(id) {
-    CallEventSubscribe(id);
-}
-function MakeCallRight(id) {
-    CallEventSubscribe(id);
-}
 
 //切断処理
 function EndCall() {
-    sendrecv1.disconnect()
+    recvonlyL.disconnect()
         .then(function () {
         });
-    sendrecv2.disconnect()
+    recvonlyR.disconnect()
         .then(function () {
         });
-}
-function CallEventSubscribe(id, soraConnection) {
-    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-        .then(mediaStream => {
-            soraConnection.connect(mediaStream);
-        })
-        .catch(e => {
-            console.error(e);
-        });
-    soraConnection.on('track', function (event) {
-        const stream = event.streams[0];
-        const mediaStreamTracks = stream.getVideoTracks();
-        if (!stream) return;
-        if (mediaStreamTracks.length == 0) {
-            const element = document.createElement('audio');
-            element.setAttribute("autoplay", "");
-            element.srcObject = stream;
-        }
-        const remoteVideo = document.getElementById(id);
-        remoteVideo.srcObject = stream;
-    });
 }
