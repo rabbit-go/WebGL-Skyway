@@ -9,24 +9,24 @@ var recvonlyR;
 function MakeCall(yourid) {
     recvonlyL = MakeCallfunc(yourid, "left");
     recvonlyR = MakeCallfunc(yourid, "right");
-    recvonlyL.on("track", (event) => {
-        const stream = event.streams[0];
+    recvonlyL.on("addstream", (event) => {
+        const stream = event.stream;
         let video = document.getElementById('LeftEye-video');
         video.srcObject = stream;
 
     });
-    recvonlyL.on("removetrack", (event) => {
+    recvonlyL.on("disconnect", (event) => {
         let video = document.getElementById('LeftEye-video');
         video.srcObject = null;
 
     });
-    recvonlyR.on("track", (event) => {
-        const stream = event.streams[0];
+    recvonlyR.on("addstream", (event) => {
+        const stream = event.stream;
         let video = document.getElementById('RightEye-video');
         video.srcObject = stream;
 
     });
-    recvonlyR.on("removetrack", (event) => {
+    recvonlyR.on("disconnect", (event) => {
         let video = document.getElementById('RightEye-video');
         video.srcObject = null;
 
