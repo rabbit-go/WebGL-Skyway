@@ -127,7 +127,9 @@ function setPosition(x, y) {
     context.listener.setPosition(x, y, 0);
 }
 function setOrientation(x, y) {
-    document.audioContext.listener.setOrientation(x, y, 0, 0, 0, 1);
+    if (document.audioContext.listener != undefined) {
+        document.audioContext.listener.setOrientation(x, y, 0, 0, 0, 1);
+    }
 }
 
 
