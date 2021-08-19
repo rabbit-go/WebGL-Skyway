@@ -34,7 +34,7 @@ function MakeCall(yourid) {
 }
 function MakeCallfunc(yourid, camerastr) {
     let recvonly;
-    const conn = Ayame.connection('wss://ayame-labo.shiguredo.jp/signaling', channelId + camerastr);
+    const conn = Ayame.connection('wss://118.238.236.208:3000/signaling', channelId + camerastr);
     conn.options.video.direction = 'recvonly';
     conn.options.audio.direction = 'recvonly';
     conn.options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
