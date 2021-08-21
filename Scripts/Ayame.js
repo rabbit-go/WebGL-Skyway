@@ -36,6 +36,7 @@ function MakeCallfunc(yourid, camerastr) {
     let recvonly;
     const conn = Ayame.connection('wss://ikei-tamalab-vpn.softether.net/signaling', channelId + camerastr);
     conn.options.video.direction = 'recvonly';
+    conn.options.video.codec = 'AV1X';
     conn.options.audio.direction = 'recvonly';
     conn.options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
     conn.connect(null);
