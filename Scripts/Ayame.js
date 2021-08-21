@@ -1,4 +1,4 @@
-const channelId = 'rabbit-go@twincam';
+const channelId = 'twincam';
 const debug = false;
 var sora = null;
 const options = {
@@ -34,7 +34,7 @@ function MakeCall(yourid) {
 }
 function MakeCallfunc(yourid, camerastr) {
     let recvonly;
-    const conn = Ayame.connection('wss://ikei-tamalab-vpn.softether.net:3000/signaling', channelId + camerastr);
+    const conn = Ayame.connection('wss://ikei-tamalab-vpn.softether.net/signaling', channelId + camerastr);
     conn.options.video.direction = 'recvonly';
     conn.options.audio.direction = 'recvonly';
     conn.options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
