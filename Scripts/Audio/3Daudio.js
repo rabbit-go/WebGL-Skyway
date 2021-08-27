@@ -14,13 +14,15 @@ class PositionSample {
     audioCtx = document.audioContext;
     isPlaying = false;
     createPanner(stream) {
-
+        if(this.audioCtx == undefined){
+            this.audioCtx = new AudioContext();
+        }
         var audio = document.createElement('audio');
         document.head.appendChild(audio);
         audio.srcObject = stream;
         audio.muted = true;
         // Hook up the audio graph for this sample.
-        const source = new MediaStreamAudioSourceNode(document.audioContext, { mediaStream: stream });
+        const source = new MediaStreamAudioSourceNode(this.audioCtx, { mediaStream: stream });
         const panner = new PannerNode(document.audioContext, { panningModel: "HRTF" });
         //panner.coneOuterGain = 0.1;
         // panner.coneOuterAngle = 360;
