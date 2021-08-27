@@ -16,6 +16,7 @@ class PositionSample {
     createPanner(stream) {
         if(this.audioCtx == undefined){
             this.audioCtx = new AudioContext();
+            document.audioContext = this.audioCtx;
         }
         var audio = document.createElement('audio');
         document.head.appendChild(audio);
@@ -23,7 +24,7 @@ class PositionSample {
         audio.muted = true;
         // Hook up the audio graph for this sample.
         const source = new MediaStreamAudioSourceNode(this.audioCtx, { mediaStream: stream });
-        const panner = new PannerNode(document.audioContext, { panningModel: "HRTF" });
+        const panner = new PannerNode(this.audioCtx, { panningModel: "HRTF" });
         //panner.coneOuterGain = 0.1;
         // panner.coneOuterAngle = 360;
         //panner.coneInnerAngle = 0;
@@ -42,7 +43,7 @@ class PositionSample {
 
         // Set the panner node to be at the origin looking in the +x
         // direction.
-        source.connect(panner).connect(document.audioContext.destination);
+        source.connect(panner).connect(this.audioCtx.destination);
         // Position the listener at the origin.
         document.audioContext.listener.setPosition(0, 0, 0);
         return panner;
