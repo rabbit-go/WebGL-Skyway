@@ -7,7 +7,7 @@ const options = {
 var recvonlyL;
 var recvonlyR;
 function MakeCall(yourid) {
-    sora = Sora.connection('wss://sora-labo.shiguredo.jp/signaling', debug);
+    sora = Sora.connection('wss://p1-1f5b9b56.imageflux.jp/singaling', debug);
     recvonlyL = MakeCallfunc(yourid, "left");
     recvonlyR = MakeCallfunc(yourid, "right");
     recvonlyL.on("track", (event) => {
@@ -38,7 +38,7 @@ function MakeCallfunc(yourid, camerastr) {
     recvonly = sora.recvonly(channelId + camerastr, null, options);
 
     recvonly.metadata = {
-        'signaling_key': 'k9eVLAMOzNGKUy0SbmjJgsho8Dh7afWvpc2AF1KDb3av86jY'
+        'signaling_key': 'eyJ0b2tlbiI6IjFmZjUwMzQ2NTY4NjQ2ZTk5OTYyOTc0ZDQ2YzQ4YWIzNTk0Mjk4MDFjZDk5OWI2Zjc5MzNmZDk4YWUzZWNmY2YifQ'
     };
     recvonly.connect();
     return recvonly;
