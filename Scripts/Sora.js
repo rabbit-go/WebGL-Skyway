@@ -7,7 +7,7 @@ const options = {
 var recvonlyL;
 var recvonlyR;
 function MakeCall(yourid) {
-    sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/singaling', debug);
+    sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/signaling', debug);
     recvonlyL = MakeCallfunc(yourid, "left");
     recvonlyR = MakeCallfunc(yourid, "right");
     recvonlyL.on("track", (event) => {
