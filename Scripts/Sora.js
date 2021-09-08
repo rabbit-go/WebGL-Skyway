@@ -1,11 +1,9 @@
 const channelId = 'rabbit-go@twincam';
 const debug = false;
 var sora = null;
-const options = {
-    videoBitRate: 15000
-}
 var recvonlyL;
 var recvonlyR;
+var channel_recvonly_connections = 0;
 function MakeCall(yourid) {
     sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/signaling', debug);
     recvonlyL = MakeCallfunc(yourid, "left");
@@ -21,6 +19,12 @@ function MakeCall(yourid) {
         video.srcObject = null;
 
     });
+    recvonlyL.on("notify", (message, transportType) => {
+        if(message.event_type=="connection.created" ||message.event_type=="connection.destroyed"){
+            channel_recvonly_connections = message.channel_recvonly_connections;
+        }
+        console.log(message, transportType);
+      });
     recvonlyR.on("track", (event) => {
         const stream = event.streams[0];
         let video = document.getElementById('RightEye-video');
@@ -43,14 +47,7 @@ function MakeCallfunc(yourid, camerastr) {
 }
 function GetPersonList(id) {
     var element = document.getElementById(id);
-    element.innerText = "";
-    if (existingLeftCall == null) return;
-    if (existingLeftCall.members == null) return;
-    var i = 0;
-    existingLeftCall.members.forEach(menber => {
-        i++;
-        element.innerText = i + '人';
-    });
+    element.innerText = channel_recvonly_connections + '人';
 }
 
 
