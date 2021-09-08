@@ -39,7 +39,7 @@ function MakeCall(yourid) {
 }
 function MakeCallfunc(yourid, camerastr) {
     let recvonly;
-    recvonly = sora.recvonly(channelId + camerastr, null, options);
+    recvonly = sora.recvonly(channelId + camerastr, null, null);
 
    
     recvonly.connect();
