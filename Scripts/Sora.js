@@ -4,6 +4,9 @@ var sora = null;
 var recvonlyL;
 var recvonlyR;
 var channel_recvonly_connections = 0;
+const options = {
+    videoBitRate: 15000
+}
 function MakeCall(yourid) {
     sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/signaling', debug);
     recvonlyL = MakeCallfunc(yourid, "left");
@@ -39,7 +42,7 @@ function MakeCall(yourid) {
 }
 function MakeCallfunc(yourid, camerastr) {
     let recvonly;
-    recvonly = sora.recvonly(channelId + camerastr, null, null);
+    recvonly = sora.recvonly(channelId + camerastr, null, options);
 
    
     recvonly.connect();
