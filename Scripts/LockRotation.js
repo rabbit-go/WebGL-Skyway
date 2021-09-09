@@ -38,9 +38,6 @@ function isSmartPhone() {
     }
   }
 if(isSmartPhone()){
-document.addEventListener("DOMContentLoaded", function(){
-
-    document.getElementById("lock").onclick = function(){
         // html全体をフルスクリーン化します
         requestFullScreen(document.documentElement);
         // 縦画面に固定します
@@ -49,7 +46,4 @@ document.addEventListener("DOMContentLoaded", function(){
         setTimeout(function(){
             lockOrientation("portrait");
         }, 1);
-
-        return false;
-    };
-}, false);}
+    }
