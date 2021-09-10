@@ -6,7 +6,7 @@ var recvonlyR;
 var channel_recvonly_connections = 0;
 const options = {
     videoBitRate: 15000,
-    videoCodecType: "H264"
+    videoCodecType: "VP8"
 }
 function MakeCall(yourid) {
     sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/signaling', debug);
