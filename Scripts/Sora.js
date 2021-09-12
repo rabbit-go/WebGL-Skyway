@@ -32,10 +32,16 @@ function MakeCall(yourid) {
         const stream = event.streams[0];
         let video = document.getElementById('RightEye-video');
         video.srcObject = stream;
+        video.onloadeddata= function() {
+            video.play();
+        };
     });
     recvonlyR.on("removetrack", (event) => {
         let video = document.getElementById('RightEye-video');
         video.srcObject = null;
+        video.onloadeddata= function() {
+            video.play();
+        };
 
     });
 }
