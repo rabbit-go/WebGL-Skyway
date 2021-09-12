@@ -51,6 +51,12 @@ function MakeCall(yourid) {
         videor.play();
         videol.play();
     });
+    c.addEventListener('touchstart', function(e) {
+        let videor = document.getElementById('RightEye-video');
+        let videol = document.getElementById('LeftEye-video');
+        videor.play();
+        videol.play();
+    });
 }
 function MakeCallfunc(yourid, camerastr) {
     let recvonly;
