@@ -44,6 +44,13 @@ function MakeCall(yourid) {
         };
 
     });
+    var c = document.getElementById('unity-canvas');
+    c.addEventListener('mousedown', function(e) {
+        let videor = document.getElementById('RightEye-video');
+        let videol = document.getElementById('LeftEye-video');
+        videor.play();
+        videol.play();
+    });
 }
 function MakeCallfunc(yourid, camerastr) {
     let recvonly;
