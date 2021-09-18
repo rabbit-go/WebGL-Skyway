@@ -1,1 +1,89 @@
-'use strict';const _0x5ea377=_0x4315;function _0x4315(_0x19977c,_0x29e21b){const _0x1f3c6b=_0x1f3c();return _0x4315=function(_0x431512,_0xd835c9){_0x431512=_0x431512-0x11e;let _0x457595=_0x1f3c6b[_0x431512];return _0x457595;},_0x4315(_0x19977c,_0x29e21b);}(function(_0x4dc9ad,_0x14048e){const _0x2fe2f2=_0x4315,_0x39d73f=_0x4dc9ad();while(!![]){try{const _0x5c1305=parseInt(_0x2fe2f2(0x12d))/0x1+-parseInt(_0x2fe2f2(0x130))/0x2*(parseInt(_0x2fe2f2(0x135))/0x3)+-parseInt(_0x2fe2f2(0x13a))/0x4+-parseInt(_0x2fe2f2(0x127))/0x5+-parseInt(_0x2fe2f2(0x11e))/0x6*(-parseInt(_0x2fe2f2(0x12b))/0x7)+parseInt(_0x2fe2f2(0x126))/0x8*(parseInt(_0x2fe2f2(0x13b))/0x9)+-parseInt(_0x2fe2f2(0x12a))/0xa*(parseInt(_0x2fe2f2(0x11f))/0xb);if(_0x5c1305===_0x14048e)break;else _0x39d73f['push'](_0x39d73f['shift']());}catch(_0x545dd2){_0x39d73f['push'](_0x39d73f['shift']());}}}(_0x1f3c,0x87a4d));let peer=null,existingLeftCall=null,existingRightCall=null;const receiveOnly=!![],VIDEO_CODEC=_0x5ea377(0x138);var roomMode=_0x5ea377(0x120);function ChangeRoomMode(_0x4567da){roomMode=_0x4567da;}function GetPeerId(_0x577cc8){peer=new Peer(_0x577cc8,{'key':'829682c4-f853-4d97-8691-aa0c10064efd','debug':0x3});}function GetPersonList(_0x35c52e){const _0x1bbdaa=_0x5ea377;var _0x5e86a5=document[_0x1bbdaa(0x12c)](_0x35c52e);_0x5e86a5[_0x1bbdaa(0x12f)]='';if(existingLeftCall==null)return;if(existingLeftCall['members']==null)return;var _0xaa579f=0x0;existingLeftCall[_0x1bbdaa(0x128)][_0x1bbdaa(0x121)](_0x5e930d=>{const _0x16d909=_0x1bbdaa;_0xaa579f++,_0x5e86a5[_0x16d909(0x12f)]=_0xaa579f+'人';});}async function MakeCallLeft(_0x2eeca0){const _0x3444cf=_0x5ea377;let _0x461ecb=MakeRoom(_0x2eeca0,null);existingLeftCall&&existingLeftCall[_0x3444cf(0x122)](),existingLeftCall=_0x461ecb,CallEventSubscribe(_0x3444cf(0x132),_0x461ecb);}function MakeCallRight(_0x5c486c){const _0x547bf3=_0x5ea377;let _0x43fe50=MakeRoom(_0x5c486c,null);existingRightCall&&existingRightCall[_0x547bf3(0x122)]();;existingRightCall=_0x43fe50,CallEventSubscribe(_0x547bf3(0x136),_0x43fe50);}function _0x1f3c(){const _0x2d0eb2=['443175uZBMhs','members','peerId','40zDXhqt','1563947RhFgNs','getElementById','280894tDGdLt','setAttribute','innerText','123682jQKEsL','audio','LeftEye-video','remove','srcObject','6brPsXu','RightEye-video','includes','VP9','createElement','4017708vpLoim','7424343MorbOf','24ZBzGUZ','624701yGJCYh','sfu','forEach','close','joinRoom','stream','body','8HhguyY'];_0x1f3c=function(){return _0x2d0eb2;};return _0x1f3c();}function EndCall(){const _0x5cc003=_0x5ea377;if(existingLeftCall)existingLeftCall[_0x5cc003(0x122)]();if(existingRightCall)existingRightCall[_0x5cc003(0x122)]();}function MakeRoom(_0x4dc364,_0x10f820){const _0x5c9f88=_0x5ea377;peer==null&&GetPeerId();const _0x28a88e=peer[_0x5c9f88(0x123)](_0x4dc364,{'mode':roomMode,'stream':_0x10f820,'videoCodec':VIDEO_CODEC,'videoReceiveEnabled':receiveOnly,'videoBandWidth':0x4e20});return _0x28a88e;}function CallEventSubscribe(_0x28e11c,_0x38e22a){const _0x647965=_0x5ea377;_0x38e22a['on'](_0x647965(0x124),function(_0x36cad7){const _0x200b07=_0x647965;if(!_0x36cad7[_0x200b07(0x129)][_0x200b07(0x137)]('tc')){let _0x42f2f9=document[_0x200b07(0x139)](_0x200b07(0x131));_0x42f2f9[_0x200b07(0x12e)]('id',_0x36cad7[_0x200b07(0x129)]+_0x200b07(0x131)),_0x42f2f9[_0x200b07(0x134)]=_0x36cad7,document[_0x200b07(0x125)]['appendChild'](_0x42f2f9);return;}let _0x499da2=document[_0x200b07(0x12c)](_0x28e11c);_0x499da2[_0x200b07(0x134)]=_0x36cad7;}),_0x38e22a['on'](_0x647965(0x122),function(){const _0x1a40f8=_0x647965;if(!stream[_0x1a40f8(0x129)][_0x1a40f8(0x137)]('tc')){let _0x2c5cd5=document[_0x1a40f8(0x12c)](stream[_0x1a40f8(0x129)]+_0x1a40f8(0x131));_0x2c5cd5[_0x1a40f8(0x133)]();}let _0x1f11a8=document[_0x1a40f8(0x12c)](_0x28e11c);_0x1f11a8[_0x1a40f8(0x134)]=undefined;});}
+'use strict';
+let peer = null;
+let existingLeftCall = null;
+let existingRightCall = null;
+const receiveOnly = true;    //受信専用かどうか
+const VIDEO_CODEC = 'VP9';
+var roomMode = 'sfu';
+function ChangeRoomMode(mode) {
+    roomMode = mode;
+}
+//peeridを取得 
+function GetPeerId(yourid) {
+    //peerオブジェクトの作成
+    peer = new Peer(yourid, {
+        key: '829682c4-f853-4d97-8691-aa0c10064efd',    //APIkey
+        debug: 3
+    });
+}
+function GetPersonList(id) {
+    var element = document.getElementById(id);
+    element.innerText = "";
+    if (existingLeftCall == null) return;
+    if (existingLeftCall.members == null) return;
+    var i = 0;
+    existingLeftCall.members.forEach(menber => {
+        i++;
+        element.innerText = i + '人';
+    });
+}
+
+async function MakeCallLeft(calltoid) {
+    //let stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true }, video: false });
+    let room = MakeRoom(calltoid, null);
+    if (existingLeftCall) {
+        existingLeftCall.close();
+    }
+    existingLeftCall = room;
+    CallEventSubscribe('LeftEye-video', room);
+}
+function MakeCallRight(calltoid) {
+    let room = MakeRoom(calltoid, null);
+    if (existingRightCall) {
+        existingRightCall.close();
+    };
+    existingRightCall = room;
+    CallEventSubscribe('RightEye-video', room);
+}
+
+//切断処理
+function EndCall() {
+    if (existingLeftCall) existingLeftCall.close();
+    if (existingRightCall) existingRightCall.close();
+}
+//発信処理
+function MakeRoom(calltoid, localStream) {
+    if (peer == null) {
+        GetPeerId();
+    }
+    const room = peer.joinRoom(calltoid, {
+        mode: roomMode,
+        stream: localStream,
+        videoCodec: VIDEO_CODEC,
+        videoReceiveEnabled: receiveOnly,                 //受信専用としてここで設定
+        videoBandWidth: 20000,
+    });
+    return room;
+}
+function CallEventSubscribe(id, room) {
+    room.on('stream', function (stream) {
+        if (!stream.peerId.includes('tc')) {
+            let element = document.createElement('audio');
+            element.setAttribute('id', stream.peerId + 'audio');
+            element.srcObject = stream;
+            document.body.appendChild(element);
+            return;
+        }
+        let video = document.getElementById(id);
+        video.srcObject = stream;
+    });
+
+    room.on('close', function () {
+        if (!stream.peerId.includes('tc')) {
+            let element = document.getElementById(stream.peerId + 'audio');
+            element.remove();
+        }
+        let video = document.getElementById(id);
+        video.srcObject = undefined;
+    });
+}

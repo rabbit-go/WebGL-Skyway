@@ -1,1 +1,66 @@
-const _0x5b3878=_0x43d3;(function(_0xe1091a,_0x1e664d){const _0x212e82=_0x43d3,_0x3acef4=_0xe1091a();while(!![]){try{const _0x417775=parseInt(_0x212e82(0x159))/0x1+-parseInt(_0x212e82(0x15d))/0x2+-parseInt(_0x212e82(0x162))/0x3+parseInt(_0x212e82(0x157))/0x4*(parseInt(_0x212e82(0x15c))/0x5)+parseInt(_0x212e82(0x15a))/0x6*(-parseInt(_0x212e82(0x167))/0x7)+parseInt(_0x212e82(0x164))/0x8+parseInt(_0x212e82(0x156))/0x9;if(_0x417775===_0x1e664d)break;else _0x3acef4['push'](_0x3acef4['shift']());}catch(_0x550018){_0x3acef4['push'](_0x3acef4['shift']());}}}(_0x1be3,0xe88e9));const channelId=_0x5b3878(0x155),debug=![];var sora=null;const options={'videoBitRate':0x3a98};var recvonlyL,recvonlyR;function MakeCall(_0x18e0d5){const _0x1fbb52=_0x5b3878;recvonlyL=MakeCallfunc(_0x18e0d5,'left'),recvonlyR=MakeCallfunc(_0x18e0d5,_0x1fbb52(0x14e)),recvonlyL['on']('addstream',_0x30cad1=>{const _0x3d47e5=_0x1fbb52,_0x5ead46=_0x30cad1[_0x3d47e5(0x151)];let _0x30c476=document[_0x3d47e5(0x154)](_0x3d47e5(0x163));_0x30c476[_0x3d47e5(0x14b)]=_0x5ead46;}),recvonlyL['on'](_0x1fbb52(0x15e),_0x8cf357=>{const _0x184f15=_0x1fbb52;let _0x537c80=document[_0x184f15(0x154)](_0x184f15(0x163));_0x537c80[_0x184f15(0x14b)]=null;}),recvonlyR['on'](_0x1fbb52(0x161),_0x2b9080=>{const _0x3eaf4a=_0x1fbb52,_0x474698=_0x2b9080[_0x3eaf4a(0x151)];let _0x2d3100=document[_0x3eaf4a(0x154)](_0x3eaf4a(0x150));_0x2d3100[_0x3eaf4a(0x14b)]=_0x474698;}),recvonlyR['on'](_0x1fbb52(0x15e),_0x82e1a4=>{const _0x209fe6=_0x1fbb52;let _0x15afd5=document['getElementById'](_0x209fe6(0x150));_0x15afd5[_0x209fe6(0x14b)]=null;});}function _0x43d3(_0x1543b5,_0x2552aa){const _0x1be3d0=_0x1be3();return _0x43d3=function(_0x43d3cb,_0x50cf83){_0x43d3cb=_0x43d3cb-0x14a;let _0x27fe7d=_0x1be3d0[_0x43d3cb];return _0x27fe7d;},_0x43d3(_0x1543b5,_0x2552aa);}function _0x1be3(){const _0x17252a=['forEach','srcObject','signalingKey','codec','right','members','RightEye-video','stream','video','options','getElementById','twincam','17000811Xxpqzg','4UpMNXo','recvonly','26688RsALIv','296724Jntdcd','direction','7260560JagufF','3062058uTfiEk','disconnect','YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ','VP9','addstream','5643vWtBgW','LeftEye-video','854112pSaEIG','then','innerText','140KPRBnP','connect','wss://ayameserver.softether.net/signaling'];_0x1be3=function(){return _0x17252a;};return _0x1be3();}function MakeCallfunc(_0x14cd1d,_0x5af7a9){const _0x354cda=_0x5b3878;let _0x2c48fa;const _0x3d83ff=Ayame['connection'](_0x354cda(0x169),channelId+_0x5af7a9);return _0x3d83ff[_0x354cda(0x153)][_0x354cda(0x152)][_0x354cda(0x15b)]=_0x354cda(0x158),_0x3d83ff['options'][_0x354cda(0x152)][_0x354cda(0x14d)]=_0x354cda(0x160),_0x3d83ff['options']['audio']['direction']=_0x354cda(0x158),_0x3d83ff['options'][_0x354cda(0x14c)]=_0x354cda(0x15f),_0x3d83ff[_0x354cda(0x168)](null),_0x3d83ff;}function GetPersonList(_0x471120){const _0x1b4257=_0x5b3878;var _0x25c3af=document[_0x1b4257(0x154)](_0x471120);_0x25c3af[_0x1b4257(0x166)]='';if(existingLeftCall==null)return;if(existingLeftCall['members']==null)return;var _0x49791c=0x0;existingLeftCall[_0x1b4257(0x14f)][_0x1b4257(0x14a)](_0x1c08cc=>{const _0xf1a1e7=_0x1b4257;_0x49791c++,_0x25c3af[_0xf1a1e7(0x166)]=_0x49791c+'人';});}function EndCall(){const _0x12b029=_0x5b3878;recvonlyL[_0x12b029(0x15e)]()[_0x12b029(0x165)](function(){}),recvonlyR[_0x12b029(0x15e)]()[_0x12b029(0x165)](function(){});}
+const channelId = 'twincam';
+const debug = false;
+var sora = null;
+const options = {
+    videoBitRate: 15000
+}
+var recvonlyL;
+var recvonlyR;
+function MakeCall(yourid) {
+    recvonlyL = MakeCallfunc(yourid, "left");
+    recvonlyR = MakeCallfunc(yourid, "right");
+    recvonlyL.on("addstream", (event) => {
+        const stream = event.stream;
+        let video = document.getElementById('LeftEye-video');
+        video.srcObject = stream;
+
+    });
+    recvonlyL.on("disconnect", (event) => {
+        let video = document.getElementById('LeftEye-video');
+        video.srcObject = null;
+
+    });
+    recvonlyR.on("addstream", (event) => {
+        const stream = event.stream;
+        let video = document.getElementById('RightEye-video');
+        video.srcObject = stream;
+
+    });
+    recvonlyR.on("disconnect", (event) => {
+        let video = document.getElementById('RightEye-video');
+        video.srcObject = null;
+        
+    });
+}
+function MakeCallfunc(yourid, camerastr) {
+    let recvonly;
+    const conn = Ayame.connection('wss://ayameserver.softether.net/signaling', channelId + camerastr);
+    conn.options.video.direction = 'recvonly';
+    conn.options.video.codec = 'VP9';
+    conn.options.audio.direction = 'recvonly';
+    conn.options.signalingKey = 'YxBUizkGKEg-ydXX_M4C1ILrP606cTJKBfN-0DHdaUCdrILQ';
+    conn.connect(null);
+    return conn;
+}
+function GetPersonList(id) {
+    var element = document.getElementById(id);
+    element.innerText = "";
+    if (existingLeftCall == null) return;
+    if (existingLeftCall.members == null) return;
+    var i = 0;
+    existingLeftCall.members.forEach(menber => {
+        i++;
+        element.innerText = i + '人';
+    });
+}
+
+
+//切断処理
+function EndCall() {
+    recvonlyL.disconnect()
+        .then(function () {
+        });
+    recvonlyR.disconnect()
+        .then(function () {
+        });
+}

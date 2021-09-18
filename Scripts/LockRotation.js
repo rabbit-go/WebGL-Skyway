@@ -37,13 +37,3 @@ function isSmartPhone() {
       return false;
     }
   }
-if(isSmartPhone()){
-        // html全体をフルスクリーン化します
-        requestFullScreen(document.documentElement);
-        // 縦画面に固定します
-        // screen.orientation.lockは即座に効くようですが、
-        // screen.lockOrientation系は少し間を開けないと有効にならないようです
-        setTimeout(function(){
-            lockOrientation("portrait");
-        }, 1);
-    }

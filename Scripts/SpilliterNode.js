@@ -1,1 +1,35 @@
-function _0x198a(){var _0x500886=['2301888vzmyzd','36juNQqu','1416QakGht','connect','webkitOfflineAudioContext','forEach','startRendering','random','738913toaCBK','OfflineAudioContext','32ehWBiT','4360nWyuUN','977860CjPXpZ','duration','351159ECwfCn','Resample','20216273jStCzF','getChannelData','oncomplete','createBuffer','renderedBuffer','numberOfChannels','205773Ysswhj','sampleRate','copyToChannel','4LBOMnq','start'];_0x198a=function(){return _0x500886;};return _0x198a();}function _0x3cd2(_0x4a566c,_0x5c3dec){var _0x198a6d=_0x198a();return _0x3cd2=function(_0x3cd2cd,_0x20fa0c){_0x3cd2cd=_0x3cd2cd-0xb4;var _0x1ab689=_0x198a6d[_0x3cd2cd];return _0x1ab689;},_0x3cd2(_0x4a566c,_0x5c3dec);}var _0x189bd2=_0x3cd2;(function(_0xa41bcc,_0x4030ca){var _0x2d4f1b=_0x3cd2,_0x209a8a=_0xa41bcc();while(!![]){try{var _0x124aa9=parseInt(_0x2d4f1b(0xc9))/0x1*(parseInt(_0x2d4f1b(0xb9))/0x2)+parseInt(_0x2d4f1b(0xb6))/0x3+parseInt(_0x2d4f1b(0xbd))/0x4*(parseInt(_0x2d4f1b(0xc6))/0x5)+parseInt(_0x2d4f1b(0xbb))/0x6+parseInt(_0x2d4f1b(0xc3))/0x7*(parseInt(_0x2d4f1b(0xc5))/0x8)+-parseInt(_0x2d4f1b(0xbc))/0x9*(-parseInt(_0x2d4f1b(0xc7))/0xa)+-parseInt(_0x2d4f1b(0xcb))/0xb;if(_0x124aa9===_0x4030ca)break;else _0x209a8a['push'](_0x209a8a['shift']());}catch(_0x137910){_0x209a8a['push'](_0x209a8a['shift']());}}}(_0x198a,0x6b1fe));class WhiteNoiseProcessor extends AudioWorkletProcessor{['process'](_0x1ac88c,_0x282a24,_0x444b42){var _0x253718=_0x3cd2;const _0x17e9bd=_0x1ac88c[0x0];return _0x17e9bd[_0x253718(0xc0)](_0x2bc597=>{var _0x16ff81=_0x253718;for(let _0x5a7fbc=0x0;_0x5a7fbc<_0x2bc597['length'];_0x5a7fbc++){_0x2bc597[_0x5a7fbc]=Math[_0x16ff81(0xc2)]()*0x2-0x1;}}),!![];}[_0x189bd2(0xca)](_0x4c650d,_0x1f5205,_0x542933,_0x36c6f){var _0x52a7a3=_0x189bd2,_0x495561=window[_0x52a7a3(0xc4)]||window[_0x52a7a3(0xbf)],_0x39ca4e=new _0x495561(_0x4c650d['numberOfChannels'],_0x4c650d[_0x52a7a3(0xc8)]*_0x4c650d[_0x52a7a3(0xb5)]*_0x36c6f,_0x36c6f),_0x34b7b0=_0x39ca4e[_0x52a7a3(0xce)](_0x4c650d['numberOfChannels'],_0x4c650d['length'],_0x4c650d[_0x52a7a3(0xb7)]);for(var _0x35acef=0x0;_0x35acef<_0x4c650d['numberOfChannels'];_0x35acef++){_0x34b7b0[_0x52a7a3(0xb8)](_0x4c650d[_0x52a7a3(0xcc)](_0x35acef),_0x35acef);}var _0x33ea26=_0x39ca4e['createBufferSource']();_0x33ea26['buffer']=_0x4c650d,_0x33ea26[_0x52a7a3(0xbe)](_0x39ca4e['destination']),_0x33ea26[_0x52a7a3(0xba)](0x0),_0x39ca4e[_0x52a7a3(0xcd)]=function(_0x1b3197){var _0x1b9801=_0x52a7a3,_0x1e5cb2=_0x1b3197[_0x1b9801(0xb4)],_0x3d3c22=_0x1e5cb2['getChannelData'](0x0);SpeakerDataSend(_0x3d3c22,_0x1f5205),_0x3d3c22=_0x1e5cb2['getChannelData'](0x1),SpeakerDataSend(_0x3d3c22,_0x542933);},_0x39ca4e[_0x52a7a3(0xc1)]();}}
+class WhiteNoiseProcessor extends AudioWorkletProcessor {
+  process (inputs, outputs, parameters) {
+    const input = inputs[0]
+    input.forEach(channel => {
+      for (let i = 0; i < channel.length; i++) {
+        channel[i] = Math.random() * 2 - 1
+      }
+    })
+    return true
+  }
+   Resample(sourceAudioBuffer, targetObjectName0, targetObjectName1, TARGET_SAMPLE_RATE) {
+		var OfflineAudioContext = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+		var offlineCtx = new OfflineAudioContext(sourceAudioBuffer.numberOfChannels, sourceAudioBuffer.duration * sourceAudioBuffer.numberOfChannels * TARGET_SAMPLE_RATE, TARGET_SAMPLE_RATE);
+		var buffer = offlineCtx.createBuffer(sourceAudioBuffer.numberOfChannels, sourceAudioBuffer.length, sourceAudioBuffer.sampleRate);
+		// Copy the source data into the offline AudioBuffer
+		for (var channel = 0; channel < sourceAudioBuffer.numberOfChannels; channel++) {
+			buffer.copyToChannel(sourceAudioBuffer.getChannelData(channel), channel);
+		}
+		// Play it from the beginning.
+		var source = offlineCtx.createBufferSource();
+		source.buffer = sourceAudioBuffer;
+		source.connect(offlineCtx.destination);
+		source.start(0);
+		offlineCtx.oncomplete = function (e) {
+			// `resampled` contains an AudioBuffer resampled at 16000Hz.
+			// use resampled.getChannelData(x) to get an Float32Array for channel x.
+			var resampled = e.renderedBuffer;
+			var leftFloat32Array = resampled.getChannelData(0);
+			SpeakerDataSend(leftFloat32Array, targetObjectName0);
+			leftFloat32Array = resampled.getChannelData(1);
+			SpeakerDataSend(leftFloat32Array, targetObjectName1);
+		}
+		offlineCtx.startRendering();
+	}
+}
