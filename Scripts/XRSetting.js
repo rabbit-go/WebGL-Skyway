@@ -3,7 +3,7 @@ function EnterXRSession() {
         .then((isSupported) => {
             if (isSupported) {
                 document.body.isXR = true;
-                document.getElementById("enterar").click();
+                unityInstance.Module.WebXR.toggleAR();
                 return;
             }
             else {
@@ -11,7 +11,7 @@ function EnterXRSession() {
                     .then((isSupported2) => {
                         if (isSupported2) {
                             document.body.isXR = true;
-                            document.getElementById("entervr").click();
+                            unityInstance.Module.WebXR.toggleVR();
                             return;
                         }
                     });
