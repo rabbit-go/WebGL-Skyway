@@ -5,7 +5,7 @@ var recvonlyL;
 var recvonlyR;
 var channel_recvonly_connections = 0;
 var options = {
-    videoCodecType: "H264"
+    videoCodecType: "VP9"
 }
 function ChangeCodcType(codecType) {
     options = {
