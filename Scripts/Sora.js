@@ -71,7 +71,7 @@ function MakeCallfunc(camerastr) {
 }
 function GetPersonList(id) {
     var element = document.getElementById(id);
-    element.innerText = channel_recvonly_connections + '人';
+    element.innerText = channel_recvonly_connections + 'people';
 }
 
 
