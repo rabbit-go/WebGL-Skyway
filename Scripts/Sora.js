@@ -17,6 +17,14 @@ function MakeCall() {
     MakeCallLeft();
     MakeCallRight();
 }
+function MakeDataChannel(id){
+    let dataConnection = MakeCallfunc("data");
+    let data = document.getElementById(id);
+    dataConnection.on("push", (message, transportType) => {
+        data.innerText = message;
+        console.log(message);
+      });
+}
 function MakeCallLeft() {
     recvonlyL = MakeCallfunc("left");
     recvonlyL.on("notify", (message, transportType) => {
@@ -62,6 +70,7 @@ function MakeCallInit() {
         videor.play();
         videol.play();
     });
+
 }
 function MakeCallfunc(camerastr) {
     let recvonly;
