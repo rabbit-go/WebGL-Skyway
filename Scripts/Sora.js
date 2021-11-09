@@ -16,6 +16,7 @@ function MakeCall() {
     MakeCallInit();
     MakeCallLeft();
     MakeCallRight();
+    MakeDataChannel('RotateValue');
 }
 function MakeDataChannel(id){
     let dataConnection = MakeCallfunc("data");
