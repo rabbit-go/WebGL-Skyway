@@ -23,7 +23,6 @@ function MakeDataChannel(id){
     let data = document.getElementById(id);
     dataConnection.on("push", (message, transportType) => {
         data.innerText = message.data.Deg;
-        console.log(message);
       });
 }
 function MakeCallLeft() {
