@@ -33,7 +33,8 @@ function MakeCallLeft() {
         }
     });
     recvonlyL.on("track", (event) => {
-         leftStream = event.streams[0];
+        let video = document.getElementById('LeftEye-video');
+        video.srcObject = event.streams[0];
     });
     recvonlyL.on("removetrack", (event) => {
         let video = document.getElementById('LeftEye-video');
@@ -45,7 +46,8 @@ function MakeCallLeft() {
 function MakeCallRight() {
     recvonlyR = MakeCallfunc("right");
     recvonlyR.on("track", (event) => {
-         rightStream = event.streams[0];
+        let video = document.getElementById('RightEye-video');
+        video.srcObject = event.streams[0];
     });
     recvonlyR.on("removetrack", (event) => {
         let video = document.getElementById('RightEye-video');
@@ -59,16 +61,12 @@ function MakeCallInit() {
     c.addEventListener('mousedown', function (e) {
         let videor = document.getElementById('RightEye-video');
         let videol = document.getElementById('LeftEye-video');
-        videor.srcObject = rightStream;
-        videol.srcObject = leftStream;
         videor.play();
         videol.play();
     });
     c.addEventListener('touchstart', function (e) {
         let videor = document.getElementById('RightEye-video');
         let videol = document.getElementById('LeftEye-video');
-        videor.srcObject = rightStream;
-        videol.srcObject = leftStream;
         videor.play();
         videol.play();
     });
