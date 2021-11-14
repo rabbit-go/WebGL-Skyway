@@ -97,10 +97,14 @@ function EndCall() {
 function EndCallLeft() {
     recvonlyL.disconnect()
         .then(function () {
+            let video = document.getElementById('LeftEye-video');
+            video.srcObject = null;
         });
 }
 function EndCallRight() {
     recvonlyR.disconnect()
         .then(function () {
+            let video = document.getElementById('RightEye-video');
+            video.srcObject = null;
         });
 }
