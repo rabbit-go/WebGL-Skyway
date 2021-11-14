@@ -34,7 +34,9 @@ function MakeCallLeft() {
     });
     recvonlyL.on("track", (event) => {
         let video = document.getElementById('LeftEye-video');
-        video.srcObject = event.streams[0];
+        if(video.srcObject==null){
+            video.srcObject = event.streams[0];
+        }
     });
     recvonlyL.on("removetrack", (event) => {
         let video = document.getElementById('LeftEye-video');
@@ -47,7 +49,10 @@ function MakeCallRight() {
     recvonlyR = MakeCallfunc("right");
     recvonlyR.on("track", (event) => {
         let video = document.getElementById('RightEye-video');
-        video.srcObject = event.streams[0];
+        if(video.srcObject==null){
+            video.srcObject = event.streams[0];
+        }
+        
     });
     recvonlyR.on("removetrack", (event) => {
         let video = document.getElementById('RightEye-video');
