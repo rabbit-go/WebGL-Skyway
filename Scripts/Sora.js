@@ -36,6 +36,15 @@ function MakeCallLeft() {
         let video = document.getElementById('LeftEye-video');
         if(video.srcObject==null){
             video.srcObject = event.streams[0];
+            var c = document.getElementById('unity-canvas');
+            c.addEventListener('mousedown', function (e) {
+                let videol = document.getElementById('LeftEye-video');
+                videol.play();
+            });
+            c.addEventListener('touchstart', function (e) {
+                let videol = document.getElementById('LeftEye-video');
+                videol.play();
+            });
         }
     });
     recvonlyL.on("removetrack", (event) => {
@@ -51,6 +60,15 @@ function MakeCallRight() {
         let video = document.getElementById('RightEye-video');
         if(video.srcObject==null){
             video.srcObject = event.streams[0];
+            var c = document.getElementById('unity-canvas');
+            c.addEventListener('mousedown', function (e) {
+                let videor = document.getElementById('RightEye-video');
+                videor.play();
+            });
+            c.addEventListener('touchstart', function (e) {
+                let videor = document.getElementById('RightEye-video');
+                videor.play();
+            });
         }
         
     });
@@ -62,13 +80,6 @@ function MakeCallRight() {
 }
 function MakeCallInit() {
     sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/signaling', debug);
-    var c = document.getElementById('unity-canvas');
-    c.addEventListener('mousedown', function (e) {
-        let videor = document.getElementById('RightEye-video');
-        let videol = document.getElementById('LeftEye-video');
-        videor.play();
-        videol.play();
-    });
     c.addEventListener('touchstart', function (e) {
         let videor = document.getElementById('RightEye-video');
         let videol = document.getElementById('LeftEye-video');
