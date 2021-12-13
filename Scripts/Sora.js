@@ -80,12 +80,6 @@ function MakeCallRight() {
 }
 function MakeCallInit() {
     sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/signaling', debug);
-    c.addEventListener('touchstart', function (e) {
-        let videor = document.getElementById('RightEye-video');
-        let videol = document.getElementById('LeftEye-video');
-        videor.play();
-        videol.play();
-    });
 
 }
 function MakeCallfunc(camerastr) {
