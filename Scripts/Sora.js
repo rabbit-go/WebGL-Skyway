@@ -22,6 +22,7 @@ function MakeDataChannel(id){
     let dataConnection = MakeCallfunc("data");
     let data = document.getElementById(id);
     dataConnection.on("push", (message, transportType) => {
+        if(data==null)return;
         data.innerText = message.data.Deg;
       });
 }
