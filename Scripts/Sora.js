@@ -23,6 +23,8 @@ function MakeDataChannel(id){
     let data = document.getElementById(id);
     dataConnection.on("push", (message, transportType) => {
         if(data==null)return;
+        if(!message.hasOwnProperty("data"))return;
+        if(!message.data.hasOwnProperty("Deg"))return;
         data.innerText = message.data.Deg;
       });
 }
