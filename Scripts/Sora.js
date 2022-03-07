@@ -17,6 +17,19 @@ var options = {
         }
     ]
 }
+var optionsDatachannel = {
+    videoCodecType: "VP9",
+    multistream: true,
+    video: true,
+    audio: true,
+    dataChannelSignaling: true,
+    dataChannels: [
+        {
+            label: "#sora-devtools",
+            direction: "sendrecv"
+        }
+    ]
+}
 function ChangeCodcType(codecType) {
     options = {
         videoCodecType: codecType,
