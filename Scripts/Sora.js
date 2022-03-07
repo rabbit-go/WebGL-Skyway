@@ -5,11 +5,31 @@ var recvonlyL;
 var recvonlyR;
 var channel_recvonly_connections = 0;
 var options = {
-    videoCodecType: "VP9"
+    videoCodecType: "VP9",
+    multistream: true,
+    video: true,
+    audio: true,
+    dataChannelSignaling: true,
+    dataChannels: [
+        {
+            label: "#sora-devtools",
+            direction: "sendrecv"
+        }
+    ]
 }
 function ChangeCodcType(codecType) {
     options = {
-        videoCodecType: codecType
+        videoCodecType: codecType,
+        multistream: true,
+        video: true,
+        audio: true,
+        dataChannelSignaling: true,
+        dataChannels: [
+            {
+                label: "#sora-devtools",
+                direction: "sendrecv"
+            }
+        ]
     };
 }
 function MakeCall() {
@@ -18,15 +38,15 @@ function MakeCall() {
     MakeCallRight();
     MakeDataChannel('RotateValue');
 }
-function MakeDataChannel(id){
+function MakeDataChannel(id) {
     let dataConnection = MakeCallfunc("data");
     let data = document.getElementById(id);
     dataConnection.on("push", (message, transportType) => {
-        if(data==null)return;
-        if(!message.hasOwnProperty("data"))return;
-        if(!message.data.hasOwnProperty("Deg"))return;
+        if (data == null) return;
+        if (!message.hasOwnProperty("data")) return;
+        if (!message.data.hasOwnProperty("Deg")) return;
         data.innerText = message.data.Deg;
-      });
+    });
 }
 function MakeCallLeft() {
     recvonlyL = MakeCallfunc("left");
@@ -37,7 +57,7 @@ function MakeCallLeft() {
     });
     recvonlyL.on("track", (event) => {
         let video = document.getElementById('LeftEye-video');
-        if(video.srcObject==null){
+        if (video.srcObject == null) {
             video.srcObject = event.streams[0];
             var c = document.getElementById('unity-canvas');
             c.addEventListener('mousedown', function (e) {
@@ -55,13 +75,13 @@ function MakeCallLeft() {
         video.srcObject = null;
     });
 }
-    let rightStream;
-    let leftStream;
+let rightStream;
+let leftStream;
 function MakeCallRight() {
     recvonlyR = MakeCallfunc("right");
     recvonlyR.on("track", (event) => {
         let video = document.getElementById('RightEye-video');
-        if(video.srcObject==null){
+        if (video.srcObject == null) {
             video.srcObject = event.streams[0];
             var c = document.getElementById('unity-canvas');
             c.addEventListener('mousedown', function (e) {
@@ -73,7 +93,7 @@ function MakeCallRight() {
                 videor.play();
             });
         }
-        
+
     });
     recvonlyR.on("removetrack", (event) => {
         let video = document.getElementById('RightEye-video');
