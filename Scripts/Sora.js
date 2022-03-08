@@ -6,16 +6,8 @@ var recvonlyR;
 var channel_recvonly_connections = 0;
 var options = {
     videoCodecType: "VP9",
-    multistream: true,
     video: true,
-    audio: true,
-    dataChannelSignaling: true,
-    dataChannels: [
-        {
-            label: "#sora-devtools",
-            direction: "sendrecv"
-        }
-    ]
+    audio: true
 }
 var optionsDatachannel = {
     videoCodecType: "VP9",
