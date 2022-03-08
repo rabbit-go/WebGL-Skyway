@@ -53,6 +53,7 @@ function MakeDataChannel(id) {
 }
 function InitDataChannel(){
     recvonlyDataChannel = sora.recvonly("twincam-left", null, optionsDatachannel);
+    recvonlyDataChannel.connect();
 }
 function MakeCallLeft() {
     recvonlyL = MakeCallfunc("left");
