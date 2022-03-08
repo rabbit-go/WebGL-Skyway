@@ -49,8 +49,9 @@ function MakeDataChannel(id) {
         if (!message.data.hasOwnProperty("Deg")) return;
         data.innerText = message.data.Deg;
     });
+}
+function InitDataChannel(){
     recvonlyDataChannel = sora.recvonly("twincam-left", null, optionsDatachannel);
-
 }
 function MakeCallLeft() {
     recvonlyL = MakeCallfunc("left");
