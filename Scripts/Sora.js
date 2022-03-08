@@ -3,6 +3,7 @@ const debug = false;
 var sora = null;
 var recvonlyL;
 var recvonlyR;
+var recvonlyDataChannel;
 var channel_recvonly_connections = 0;
 var options = {
     videoCodecType: "VP9",
@@ -48,6 +49,8 @@ function MakeDataChannel(id) {
         if (!message.data.hasOwnProperty("Deg")) return;
         data.innerText = message.data.Deg;
     });
+    recvonlyDataChannel = sora.recvonly("twincam-left", null, optionsDatachannel);
+
 }
 function MakeCallLeft() {
     recvonlyL = MakeCallfunc("left");
