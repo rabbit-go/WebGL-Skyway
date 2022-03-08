@@ -15,7 +15,7 @@ var options = {
 var optionsDatachannel = {
     videoCodecType: "VP9",
     multistream: true,
-    video: false,
+    video: true,
     audio: false,
     dataChannelSignaling: true,
     dataChannels: [
