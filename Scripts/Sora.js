@@ -21,6 +21,7 @@ var optionsDatachannel = {
     dataChannels: [
         {
             label: "#sora-devtools",
+            ordered: true,
             direction: "sendrecv"
         }
     ]
