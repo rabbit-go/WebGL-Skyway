@@ -6,14 +6,16 @@ var recvonlyR;
 var channel_recvonly_connections = 0;
 var options = {
     videoCodecType: "VP9",
+    multistream: false,
     video: true,
-    audio: true
+    audio: true,
+    dataChannelSignaling: false,
 }
 var optionsDatachannel = {
     videoCodecType: "VP9",
     multistream: true,
-    video: true,
-    audio: true,
+    video: false,
+    audio: false,
     dataChannelSignaling: true,
     dataChannels: [
         {
@@ -25,16 +27,10 @@ var optionsDatachannel = {
 function ChangeCodcType(codecType) {
     options = {
         videoCodecType: codecType,
-        multistream: true,
+        multistream: false,
         video: true,
         audio: true,
-        dataChannelSignaling: true,
-        dataChannels: [
-            {
-                label: "#sora-devtools",
-                direction: "sendrecv"
-            }
-        ]
+        dataChannelSignaling: false
     };
 }
 function MakeCall() {
