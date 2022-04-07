@@ -32,7 +32,8 @@ function ChangeCodcType(codecType) {
         multistream: false,
         video: true,
         audio: true,
-        dataChannelSignaling: false
+        dataChannelSignaling: true,
+        ignoreDisconnectWebSocket: false
     };
 }
 function MakeCall() {
@@ -137,6 +138,7 @@ function EndCallLeft() {
         });
 }
 function EndCallRight() {
+    if(recvonlyR==null)return;
     recvonlyR.disconnect()
         .then(function () {
             let video = document.getElementById('RightEye-video');
