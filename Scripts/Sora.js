@@ -40,7 +40,7 @@ function MakeCall() {
     MakeCallInit();
     MakeCallLeft();
     MakeCallRight();
-    //MakeDataChannel('RotateValue');
+    MakeDataChannel('RotateValue');
 }
 function MakeDataChannel(id) {
     let dataConnection = MakeCallfunc("data");
@@ -57,10 +57,7 @@ function InitDataChannel(){
     recvonlyDataChannel.connect();
 }
 function MakeCallLeft() {
-    MakeCallLeft(channelId +"left");
-}
-function MakeCallLeft(id){
-    recvonlyL = MakeCallfunc(id);
+    recvonlyL = MakeCallfunc("left");
     recvonlyL.on("notify", (message, transportType) => {
         if (message.event_type == "connection.created" || message.event_type == "connection.updated" || message.event_type == "connection.destroyed") {
             channel_recvonly_connections = message.channel_recvonly_connections;
@@ -88,11 +85,8 @@ function MakeCallLeft(id){
 }
 let rightStream;
 let leftStream;
-function MakeCallRight(){
-    recvonlyR = MakeCallfunc(channelId +"right");
-}
-function MakeCallRight(id) {
-    recvonlyR = MakeCallfunc(id);
+function MakeCallRight() {
+    recvonlyR = MakeCallfunc("right");
     recvonlyR.on("track", (event) => {
         let video = document.getElementById('RightEye-video');
         if (video.srcObject == null) {
@@ -121,7 +115,7 @@ function MakeCallInit() {
 }
 function MakeCallfunc(camerastr) {
     let recvonly;
-    recvonly = sora.recvonly(camerastr, null, options);
+    recvonly = sora.recvonly(channelId + camerastr, null, options);
     recvonly.connect();
     return recvonly;
 }
