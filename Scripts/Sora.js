@@ -70,7 +70,7 @@ function MakeCallLeft(id){
         let video = document.getElementById('LeftEye-video');
         if (video.srcObject == null) {
             video.srcObject = event.streams[0];
-            var c = document.getElementById('unity-canvas');
+            var c = document.getElementById('unity-canvas-1');
             c.addEventListener('mousedown', function (e) {
                 let videol = document.getElementById('LeftEye-video');
                 videol.play();
@@ -97,7 +97,7 @@ function MakeCallRight(id) {
         let video = document.getElementById('RightEye-video');
         if (video.srcObject == null) {
             video.srcObject = event.streams[0];
-            var c = document.getElementById('unity-canvas');
+            var c = document.getElementById('unity-canvas-1');
             c.addEventListener('mousedown', function (e) {
                 let videor = document.getElementById('RightEye-video');
                 videor.play();
