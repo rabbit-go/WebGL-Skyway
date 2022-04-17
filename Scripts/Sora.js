@@ -56,8 +56,11 @@ function InitDataChannel(){
     recvonlyDataChannel = sora.recvonly("twincam-left", null, optionsDatachannel);
     recvonlyDataChannel.connect();
 }
-function MakeCallLeft() {
-    recvonlyL = MakeCallfunc("left");
+function MakeCallLeft(){
+    MakeCallLeft("rabbit-go@twincamleft") ;
+}
+function MakeCallLeft(id) {
+    recvonlyL = MakeCallfunc(id);
     recvonlyL.on("notify", (message, transportType) => {
         if (message.event_type == "connection.created" || message.event_type == "connection.updated" || message.event_type == "connection.destroyed") {
             channel_recvonly_connections = message.channel_recvonly_connections;
@@ -85,8 +88,11 @@ function MakeCallLeft() {
 }
 let rightStream;
 let leftStream;
-function MakeCallRight() {
-    recvonlyR = MakeCallfunc("right");
+function MakeCallRight(){
+    MakeCallRight("rabbit-go@twincamright") ;
+}
+function MakeCallRight(id) {
+    recvonlyR = MakeCallfunc(id);
     recvonlyR.on("track", (event) => {
         let video = document.getElementById('RightEye-video');
         if (video.srcObject == null) {
@@ -115,7 +121,7 @@ function MakeCallInit() {
 }
 function MakeCallfunc(camerastr) {
     let recvonly;
-    recvonly = sora.recvonly(channelId + camerastr, null, options);
+    recvonly = sora.recvonly(camerastr, null, options);
     recvonly.connect();
     return recvonly;
 }
