@@ -60,6 +60,9 @@ function MakeCallLeft(){
     MakeCallLeft("rabbit-go@twincamleft") ;
 }
 function MakeCallLeft(id) {
+    if(id===null){
+        id = "rabbit-go@twincamleft";
+    }
     recvonlyL = MakeCallfunc(id);
     recvonlyL.on("notify", (message, transportType) => {
         if (message.event_type == "connection.created" || message.event_type == "connection.updated" || message.event_type == "connection.destroyed") {
@@ -92,6 +95,9 @@ function MakeCallRight(){
     MakeCallRight("rabbit-go@twincamright") ;
 }
 function MakeCallRight(id) {
+     if(id===null){
+        id = "rabbit-go@twincamright";
+    }
     recvonlyR = MakeCallfunc(id);
     recvonlyR.on("track", (event) => {
         let video = document.getElementById('RightEye-video');
