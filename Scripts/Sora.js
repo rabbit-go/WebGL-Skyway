@@ -29,7 +29,7 @@ var optionsDatachannel = {
 function ChangeCodcType(codecType) {
     options = {
         videoCodecType: codecType,
-        multistream: false,
+        multistream: true,
         video: true,
         audio: true,
         dataChannelSignaling: true,
