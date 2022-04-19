@@ -7,7 +7,7 @@ var recvonlyDataChannel;
 var channel_recvonly_connections = 0;
 var options = {
     videoCodecType: "VP9",
-    multistream: false,
+    multistream: true,
     video: true,
     audio: true,
     dataChannelSignaling: false,
