@@ -60,7 +60,7 @@ function MakeCallLeft(){
     MakeCallLeft("rabbit-go@twincamleft") ;
 }
 function MakeCallLeft(id) {
-    if(id===null){
+    if(id==null){
         id = "rabbit-go@twincamleft";
     }
     recvonlyL = MakeCallfunc(id);
@@ -95,7 +95,7 @@ function MakeCallRight(){
     MakeCallRight("rabbit-go@twincamright") ;
 }
 function MakeCallRight(id) {
-     if(id===null){
+     if(id==null){
         id = "rabbit-go@twincamright";
     }
     recvonlyR = MakeCallfunc(id);
