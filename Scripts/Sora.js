@@ -78,8 +78,7 @@ function MakeCallLeft(id) {
     });
     recvonlyL.on('message', (message) => {    
         let msg = new TextDecoder().decode(message.data);
-        let json = JSON.parse(msg);
-        SendMessage('RotationViewer', 'SoraRotationDataReceved', json.xVal,json.yVal,json.zVal,message.label);
+        ReactUnityWebGL.RotationViewer(msg);
         get_message_target.innerHTML = msg;
     });
     recvonlyL.on("track", (event) => {
