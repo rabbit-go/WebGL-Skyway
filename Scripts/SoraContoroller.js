@@ -14,6 +14,6 @@ function SoraSendData(x, y, z) {
     let zVal = parseFloat(z);
     let json = JSON.stringify({x: xVal, y: yVal, z: zVal });
     let video = document.getElementById('LeftEye-video');
-    if (recvonlyDataChannel != null && video.srcObject != null)
-        recvonlyDataChannel.sendMessage("#sora-devtools", (new TextEncoder('utf-8')).encode(json));
+    if (recvonlyL  != null && video.srcObject != null)
+        recvonlyL .sendMessage("#sora-devtools", (new TextEncoder('utf-8')).encode(json));
 }
