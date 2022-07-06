@@ -8,3 +8,12 @@ function soraSendDataChannelLoop(ang_str, lin_str) {
         // let send_value = new Int16Array([((127*ang) << 8) & 0xff00; | (127*lin) & 0x00ff]);
         recvonlyDataChannel.sendMessage("#sora-devtools", new Uint8Array([0x43, 0x00, ang, lin]));
 }
+function SoraSendData(x, y, z) {
+    let xVal = parseFloat(x);
+    let yVal = parseFloat(y);
+    let zVal = parseFloat(z);
+    let json = JSON.stringify({x: xVal, y: yVal, z: zVal });
+    let video = document.getElementById('LeftEye-video');
+    if (recvonlyDataChannel != null && video.srcObject != null)
+        recvonlyDataChannel.sendMessage("#sora-send-data", (new TextEncoder('utf-8')).encode(json));
+}
