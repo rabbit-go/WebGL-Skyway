@@ -69,6 +69,12 @@ function MakeCallLeft(id) {
             channel_recvonly_connections = message.channel_recvonly_connections;
         }
     });
+    recvonly.on('message', (message) => {    
+        let msg = new TextDecoder().decode(message.data);
+        let json = JSON.parse(msg);
+        SendMessage('RotationViewer', 'SoraRotationDataReceved', json.xVal,json.yVal,json.zVal,message.label);
+        get_message_target.innerHTML = msg;
+    });
     recvonlyL.on("track", (event) => {
         let video = document.getElementById('LeftEye-video');
         if (video.srcObject == null) {
