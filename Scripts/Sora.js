@@ -10,7 +10,14 @@ var options = {
     multistream: true,
     video: true,
     audio: true,
-    dataChannelSignaling: false,
+    dataChannelSignaling: true,
+    dataChannels: [
+        {
+            label: "#sora-devtools",
+            ordered: true,
+            direction: "sendrecv"
+        }
+    ]
 }
 var optionsDatachannel = {
     videoCodecType: "VP9",
