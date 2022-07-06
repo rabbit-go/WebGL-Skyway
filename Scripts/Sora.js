@@ -79,7 +79,6 @@ function MakeCallLeft(id) {
     recvonlyL.on('message', (message) => {    
         let msg = new TextDecoder().decode(message.data);
         ReactUnityWebGL.RotationViewer(msg);
-        get_message_target.innerHTML = msg;
     });
     recvonlyL.on("track", (event) => {
         let video = document.getElementById('LeftEye-video');
