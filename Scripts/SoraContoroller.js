@@ -12,7 +12,8 @@ function SoraSendData(x, y, z) {
     let xVal = parseFloat(x);
     let yVal = parseFloat(y);
     let zVal = parseFloat(z);
-    let json = JSON.stringify({x: xVal, y: yVal, z: zVal });
+    var id = Cookies.get('id');
+    let json = JSON.stringify({x: xVal, y: yVal, z: zVal,name: id});
     let video = document.getElementById('LeftEye-video');
     if (recvonlyL  != null && video.srcObject != null)
         recvonlyL .sendMessage("#sora-devtools", (new TextEncoder('utf-8')).encode(json));
