@@ -16,6 +16,11 @@ var options = {
             label: "#sora-devtools",
             ordered: true,
             direction: "sendrecv"
+        },
+        {
+            label: "#soraData",
+            ordered: false,
+            direction: "sendrecv"
         }
     ]
 }
