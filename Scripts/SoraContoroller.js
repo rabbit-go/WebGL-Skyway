@@ -13,7 +13,7 @@ function SoraSendData(x, y, z,id) {
     let xVal = parseFloat(x);
     let yVal = parseFloat(y);
     let zVal = parseFloat(z);
-    let yValInteger = (int)((yVal/180)*127);
+    let yValInteger = Math.trunc((yVal/180)*127);
     let json = JSON.stringify({x: xVal, y: yVal, z: zVal,name: id});
     let video = document.getElementById('LeftEye-video');
     if (recvonlyL  != null && video.srcObject != null)
