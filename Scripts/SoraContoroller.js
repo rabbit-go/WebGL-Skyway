@@ -13,10 +13,15 @@ function SoraSendData(x, y, z,id) {
     let xVal = parseFloat(x);
     let yVal = parseFloat(y);
     let zVal = parseFloat(z);
-    let yValInteger = Math.trunc((yVal/180)*127);
     let json = JSON.stringify({x: xVal, y: yVal, z: zVal,name: id});
     let video = document.getElementById('LeftEye-video');
     if (recvonlyL  != null && video.srcObject != null)
         recvonlyL.sendMessage("#soraData", (new TextEncoder('utf-8')).encode(json));
+}
+function SoraVRSendData(x, y, z,id) {
+    let yVal = parseFloat(y);
+    let yValInteger = Math.trunc((yVal/180)*127);
+    let video = document.getElementById('LeftEye-video');
+    if (recvonlyL  != null && video.srcObject != null)
         recvonlyL.sendMessage("#sora-devtools", new Uint8Array([0xe0, yValInteger]));
 }
