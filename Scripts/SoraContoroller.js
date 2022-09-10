@@ -29,7 +29,7 @@ function SoraVRSendData(x, y, z,id) {
     let yValInteger = Math.trunc((yVal/180)*127);
     let video = document.getElementById('RightEye-video-mobile');
     if (recvonlyR_mobile  != null && video.srcObject != null){
-        HMD_ang = -yVal/Math.PI*700;
+        HMD_ang = (yVal/180)/Math.PI*700;
         if (Math.abs(HMD_ang) < 350) {
             setPosA = 0;
         }
