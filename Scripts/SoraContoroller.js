@@ -8,6 +8,7 @@ function soraSendDataChannelLoop(ang_str, lin_str) {
         // let send_value = new Int16Array([((127*ang) << 8) & 0xff00; | (127*lin) & 0x00ff]);
         recvonlyR_mobile.sendMessage("#sora-devtools", new Uint8Array([0x43, 0x00, ang, lin]));
 }
+}
 
 function SoraSendData(x, y, z,id) {
     let xVal = parseFloat(x);
@@ -50,7 +51,6 @@ function SoraVRSendData(x, y, z,id) {
           //  recvonlyR_mobile.sendMessage("#sora-devtools", new Uint8Array([0xe0, yValInteger]));
            recvonlyR_mobile.sendMessage('#sora-devtools', new Uint8Array([0xe0, new Uint16Array([send_value & 0xff00])[0] >> 8, send_value & 0x00ff]));
         }
-    
     }
-        
-}
+    }
+       
