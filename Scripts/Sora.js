@@ -2,7 +2,9 @@ const channelId = 'rabbit-go@twincam';
 const debug = false;
 var sora = null;
 var recvonlyL;
+var recvonlyL_mobile;
 var recvonlyR;
+var recvonlyR_mobile;
 var recvonlyDataChannel;
 var channel_recvonly_connections = 0;
 var options = {
@@ -71,26 +73,26 @@ function MakeCallLeft(){
     MakeCallLeft("rabbit-go@twincamleft") ;
 }
 function MakeCallLeft(id) {
-    MakeCallLeft(id,'LeftEye-video');
+   recvonlyL = MakeCallLeft(id,'LeftEye-video');
 }
 function MakeCallLeftMobile(id) {
-    MakeCallLeft(id,'LeftEye-video-mobile');
+  recvonlyL_mobile =  MakeCallLeft(id,'LeftEye-video-mobile');
 }
 function MakeCallLeft(id,tag) {
     if(id==null){
         id = "rabbit-go@twincamleft";
     }
-    recvonlyL = MakeCallfunc(id);
-    recvonlyL.on("notify", (message, transportType) => {
+   let recvonly = MakeCallfunc(id);
+    recvonly.on("notify", (message, transportType) => {
         if (message.event_type == "connection.created" || message.event_type == "connection.updated" || message.event_type == "connection.destroyed") {
             channel_recvonly_connections = message.channel_recvonly_connections;
         }
     });
-    recvonlyL.on('message', (message) => {    
+    recvonly.on('message', (message) => {    
         let msg = new TextDecoder().decode(message.data);
         ReactUnityWebGL.RotationViewer(msg);
     });
-    recvonlyL.on("track", (event) => {
+    recvonly.on("track", (event) => {
         let video = document.getElementById(tag);
         if (video.srcObject == null) {
             video.srcObject = event.streams[0];
@@ -105,10 +107,11 @@ function MakeCallLeft(id,tag) {
             });
         }
     });
-    recvonlyL.on("removetrack", (event) => {
+    recvonly.on("removetrack", (event) => {
         let video = document.getElementById(tag);
         video.srcObject = null;
     });
+    return recvonly;
 }
 let rightStream;
 let leftStream;
@@ -116,17 +119,17 @@ function MakeCallRight(){
     MakeCallRight("rabbit-go@twincamright") ;
 }
 function MakeCallRight(id) {
-    MakeCallRight(id,RightEye-video);
+    recvonlyR = MakeCallRight(id,RightEye-video);
 }
 function MakeCallMobile(id) {
-    MakeCallRight(id,RightEye-video-mobile);
+   recvonlyR_mobile = MakeCallRight(id,RightEye-video-mobile);
 }
 function MakeCallRight(id,tag) {
      if(id==null){
         id = "rabbit-go@twincamright";
     }
-    recvonlyR = MakeCallfunc(id);
-    recvonlyR.on("track", (event) => {
+    let recvonly = MakeCallfunc(id);
+    recvonly.on("track", (event) => {
         let video = document.getElementById(tag);
         if (video.srcObject == null) {
             video.srcObject = event.streams[0];
@@ -142,11 +145,12 @@ function MakeCallRight(id,tag) {
         }
 
     });
-    recvonlyR.on("removetrack", (event) => {
+    recvonly.on("removetrack", (event) => {
         let video = document.getElementById(tag);
         video.srcObject = null;
 
     });
+    return recvonly;
 }
 function MakeCallInit() {
    // sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/signaling', debug);
