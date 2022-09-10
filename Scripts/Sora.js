@@ -122,7 +122,7 @@ function MakeCallRight(id) {
     recvonlyR = MakeCallRight(id,RightEye-video);
 }
 function MakeCallMobile(id) {
-   recvonlyR_mobile = MakeCallRight(id,RightEye-video-mobile);
+   recvonlyR_mobile = MakeCallRight(id,'RightEye-video-mobile');
 }
 function MakeCallRight(id,tag) {
      if(id==null){
