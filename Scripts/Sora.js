@@ -121,7 +121,7 @@ function MakeCallRight(){
     MakeCallRight("rabbit-go@twincamright") ;
 }
 function MakeCallRight(id) {
-    recvonlyR = MakeCallRight(id,RightEye-video);
+    recvonlyR = MakeCallRight(id,'RightEye-video');
 }
 function  MakeCallRightMobile(id) {
    recvonlyR_mobile = MakeCallRight(id,'RightEye-video-mobile');
