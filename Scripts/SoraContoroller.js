@@ -6,7 +6,7 @@ function soraSendDataChannelLoop(ang_str, lin_str) {
     let video = document.getElementById('RightEye-video-mobile');
     if (recvonlyR_mobile != null && video.srcObject != null){
         // let send_value = new Int16Array([((127*ang) << 8) & 0xff00; | (127*lin) & 0x00ff]);
-        recvonlyR_mobile.sendMessage("#sora-devtools", new Uint8Array([0x43, 0x00, ang, lin]));
+   //     recvonlyR_mobile.sendMessage("#sora-devtools", new Uint8Array([0x43, 0x00, ang, lin]));
 }
 }
 
@@ -29,7 +29,7 @@ function SoraVRSendData(x, y, z,id) {
     let yValInteger = Math.trunc((yVal/180)*127);
     let video = document.getElementById('RightEye-video-mobile');
     if (recvonlyR_mobile  != null && video.srcObject != null){
-        HMD_ang = (yVal/180)/Math.PI*700;
+        HMD_ang = (yVal/180)*700;
         if (Math.abs(HMD_ang) < 350) {
             setPosA = 0;
         }
