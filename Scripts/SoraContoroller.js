@@ -51,7 +51,7 @@ function SoraVRSendData(x, y, z,id) {
             twincam_setPos_count = 0;
             //recvonlyR_mobile.sendMessage("#sora-devtools", new Uint8Array([0xe0, yValInteger]));
           //  recvonlyR_mobile.sendMessage("#sora-devtools", new Uint8Array([0xe0, yValInteger]));
-           recvonlyR_mobile.sendMessage('#sora-devtools', new Uint8Array([0xe0, new Uint16Array([send_value & 0xff00])[0] >> 8, send_value & 0x00ff]));
+           recvonlyDataChannel.sendMessage('#sora-devtools', new Uint8Array([0xe0, new Uint16Array([send_value & 0xff00])[0] >> 8, send_value & 0x00ff]));
         }
     }
     }
