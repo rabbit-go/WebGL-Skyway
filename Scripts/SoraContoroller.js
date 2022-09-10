@@ -19,7 +19,7 @@ function SoraSendData(x, y, z,id) {
     if (recvonlyL  != null && video.srcObject != null)
         recvonlyL.sendMessage("#soraData", (new TextEncoder('utf-8')).encode(json));
 }
-var twincam_setPos_count;
+var twincam_setPos_count= 0;
 var old_HMD_ang = 0;
 var setPosA=0;
 var setPos=0;
