@@ -27,7 +27,6 @@ var options = {
     ]
 }
 var optionsDatachannel = {
-    videoCodecType: "VP9",
     multistream: true,
     video: true,
     audio: false,
@@ -35,7 +34,6 @@ var optionsDatachannel = {
     dataChannels: [
         {
             label: "#sora-devtools",
-            ordered: true,
             direction: "sendrecv"
         }
     ]
@@ -59,15 +57,15 @@ function MakeDataChannel(id) {
     let dataConnection = MakeCallfunc("data");
     let data = document.getElementById(id);
     dataConnection.on("push", (message, transportType) => {
-        if (data == null) return;
-        if (!message.hasOwnProperty("data")) return;
-        if (!message.data.hasOwnProperty("Deg")) return;
-        data.innerText = message.data.Deg;
+       // if (data == null) return;
+      //  if (!message.hasOwnProperty("data")) return;
+       // if (!message.data.hasOwnProperty("Deg")) return;
+      //  data.innerText = message.data.Deg;
     });
 }
 function InitDataChannel(){
     if(recvonlyDataChannel==null){   
-    recvonlyDataChannel = sora.recvonly("twincam-left", null, optionsDatachannel);
+    recvonlyDataChannel = sora.recvonly("robots-control", null, optionsDatachannel);
     recvonlyDataChannel.connect();
     }
 }
