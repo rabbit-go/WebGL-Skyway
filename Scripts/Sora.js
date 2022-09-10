@@ -157,7 +157,7 @@ function MakeCallRight(id,tag) {
 function MakeCallInit() {
    // sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/signaling', debug);
     if(sora==null){  
-    sora = Sora.connection('ws://192.168.10.64:5000/signaling', debug);
+    sora = Sora.connection('ws://192.168.11.64:5000/signaling', debug);
     }
 }
 function MakeCallfunc(camerastr) {
