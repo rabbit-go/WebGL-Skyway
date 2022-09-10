@@ -21,6 +21,8 @@ function SoraSendData(x, y, z,id) {
 }
 var twincam_setPos_count;
 var old_HMD_ang = 0;
+var setPosA=0;
+var setPos=0;
 function SoraVRSendData(x, y, z,id) {
     let yVal = parseFloat(y);
     twincam_setPos_count+=6;
