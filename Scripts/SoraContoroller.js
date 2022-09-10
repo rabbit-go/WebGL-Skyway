@@ -21,7 +21,7 @@ function SoraSendData(x, y, z,id) {
 function SoraVRSendData(x, y, z,id) {
     let yVal = parseFloat(y);
     let yValInteger = Math.trunc((yVal/180)*127);
-    let video = document.getElementById('LeftEye-video');
+    let video = document.getElementById('RightEye-video-mobile');
     if (recvonlyR_mobile  != null && video.srcObject != null)
         recvonlyR_mobile.sendMessage("#sora-devtools", new Uint8Array([0xe0, yValInteger]));
 }
