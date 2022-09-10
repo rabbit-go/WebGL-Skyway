@@ -22,6 +22,6 @@ function SoraVRSendData(x, y, z,id) {
     let yVal = parseFloat(y);
     let yValInteger = Math.trunc((yVal/180)*127);
     let video = document.getElementById('LeftEye-video');
-    if (recvonlyL_mobile  != null && video.srcObject != null)
-        recvonlyL_mobile.sendMessage("#sora-devtools", new Uint8Array([0xe0, yValInteger]));
+    if (recvonlyR_mobile  != null && video.srcObject != null)
+        recvonlyR_mobile.sendMessage("#sora-devtools", new Uint8Array([0xe0, yValInteger]));
 }
