@@ -121,7 +121,7 @@ function MakeCallRight(){
 function MakeCallRight(id) {
     recvonlyR = MakeCallRight(id,RightEye-video);
 }
-function MakeCallMobile(id) {
+function  MakeCallRightMobile(id) {
    recvonlyR_mobile = MakeCallRight(id,'RightEye-video-mobile');
 }
 function MakeCallRight(id,tag) {
