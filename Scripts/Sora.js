@@ -75,12 +75,12 @@ function MakeCallLeft(){
     MakeCallLeft("rabbit-go@twincamleft") ;
 }
 function MakeCallLeft(id) {
-   recvonlyL = MakeCallLeft(id,'LeftEye-video');
+   recvonlyL = MakeCallLeftInternal(id,'LeftEye-video');
 }
 function MakeCallLeftMobile(id) {
-  recvonlyL_mobile =  MakeCallLeft(id,'LeftEye-video-mobile');
+  recvonlyL_mobile =  MakeCallLeftInternal(id,'LeftEye-video-mobile');
 }
-function MakeCallLeft(id,tag) {
+function MakeCallLeftInternal(id,tag) {
     if(id==null){
         id = "rabbit-go@twincamleft";
     }
@@ -121,12 +121,12 @@ function MakeCallRight(){
     MakeCallRight("rabbit-go@twincamright") ;
 }
 function MakeCallRight(id) {
-    recvonlyR = MakeCallRight(id,'RightEye-video');
+    recvonlyR = MakeCallRightInternal(id,'RightEye-video');
 }
 function  MakeCallRightMobile(id) {
-   recvonlyR_mobile = MakeCallRight(id,'RightEye-video-mobile');
+   recvonlyR_mobile = MakeCallRightInternal(id,'RightEye-video-mobile');
 }
-function MakeCallRight(id,tag) {
+function MakeCallRightInternal(id,tag) {
      if(id==null){
         id = "rabbit-go@twincamright";
     }
