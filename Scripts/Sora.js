@@ -66,8 +66,10 @@ function MakeDataChannel(id) {
     });
 }
 function InitDataChannel(){
+    if(recvonlyDataChannel==null){   
     recvonlyDataChannel = sora.recvonly("twincam-left", null, optionsDatachannel);
     recvonlyDataChannel.connect();
+    }
 }
 function MakeCallLeft(){
     MakeCallLeft("rabbit-go@twincamleft") ;
@@ -154,7 +156,9 @@ function MakeCallRight(id,tag) {
 }
 function MakeCallInit() {
    // sora = Sora.connection('wss://sora.ikeilabsora.0am.jp/signaling', debug);
+    if(sora==null){  
     sora = Sora.connection('ws://192.168.10.64:5000/signaling', debug);
+    }
 }
 function MakeCallfunc(camerastr) {
     let recvonly;
