@@ -71,6 +71,12 @@ function MakeCallLeft(){
     MakeCallLeft("rabbit-go@twincamleft") ;
 }
 function MakeCallLeft(id) {
+    MakeCallLeft(id,'LeftEye-video');
+}
+function MakeCallLeftMobile(id) {
+    MakeCallLeft(id,'LeftEye-video-mobile');
+}
+function MakeCallLeft(id,tag) {
     if(id==null){
         id = "rabbit-go@twincamleft";
     }
@@ -85,22 +91,22 @@ function MakeCallLeft(id) {
         ReactUnityWebGL.RotationViewer(msg);
     });
     recvonlyL.on("track", (event) => {
-        let video = document.getElementById('LeftEye-video');
+        let video = document.getElementById(tag);
         if (video.srcObject == null) {
             video.srcObject = event.streams[0];
             var c = document.getElementById('unity-canvas-1');
             c.addEventListener('mousedown', function (e) {
-                let videol = document.getElementById('LeftEye-video');
+                let videol = document.getElementById(tag);
                 videol.play();
             });
             c.addEventListener('touchstart', function (e) {
-                let videol = document.getElementById('LeftEye-video');
+                let videol = document.getElementById(tag);
                 videol.play();
             });
         }
     });
     recvonlyL.on("removetrack", (event) => {
-        let video = document.getElementById('LeftEye-video');
+        let video = document.getElementById(tag);
         video.srcObject = null;
     });
 }
@@ -110,28 +116,34 @@ function MakeCallRight(){
     MakeCallRight("rabbit-go@twincamright") ;
 }
 function MakeCallRight(id) {
+    MakeCallRight(id,RightEye-video);
+}
+function MakeCallMobile(id) {
+    MakeCallRight(id,RightEye-video-mobile);
+}
+function MakeCallRight(id,tag) {
      if(id==null){
         id = "rabbit-go@twincamright";
     }
     recvonlyR = MakeCallfunc(id);
     recvonlyR.on("track", (event) => {
-        let video = document.getElementById('RightEye-video');
+        let video = document.getElementById(tag);
         if (video.srcObject == null) {
             video.srcObject = event.streams[0];
             var c = document.getElementById('unity-canvas-1');
             c.addEventListener('mousedown', function (e) {
-                let videor = document.getElementById('RightEye-video');
+                let videor = document.getElementById(tag);
                 videor.play();
             });
             c.addEventListener('touchstart', function (e) {
-                let videor = document.getElementById('RightEye-video');
+                let videor = document.getElementById(tag);
                 videor.play();
             });
         }
 
     });
     recvonlyR.on("removetrack", (event) => {
-        let video = document.getElementById('RightEye-video');
+        let video = document.getElementById(tag);
         video.srcObject = null;
 
     });
