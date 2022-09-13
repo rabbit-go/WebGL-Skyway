@@ -66,6 +66,12 @@ function MakeDataChannel(id) {
 function InitDataChannel(){
     if(recvonlyDataChannel==null){   
     recvonlyDataChannel = sora.recvonly("robots-control", null, optionsDatachannel);
+    recvonlyDataChannel.on('message', (message) => {    
+        if(message[0]==0xe0){
+        let msg = message[1]<<8 | message[2];
+        ReactUnityWebGL.VRRotation(msg);
+    }
+    });
     recvonlyDataChannel.connect();
     }
 }
