@@ -28,7 +28,8 @@ function SoraVRSendData(x, y, z,id) {
     twincam_setPos_count+=6;
     let yValInteger = Math.trunc((yVal/180)*127);
     let video = document.getElementById('RightEye-video-mobile');
-    if (recvonlyR_mobile  != null && video.srcObject != null){
+    let video2 = document.getElementById('RightEye-video');
+    if (recvonlyR_mobile  != null && (video.srcObject != null || video2.srcObject !=null)){
         HMD_ang = (yVal/180)*700;
         if (Math.abs(HMD_ang) < 350) {
             setPosA = 0;
