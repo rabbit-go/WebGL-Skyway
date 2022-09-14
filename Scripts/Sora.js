@@ -67,7 +67,7 @@ function InitDataChannel(){
     if(recvonlyDataChannel==null){   
     recvonlyDataChannel = sora.recvonly("robots-control", null, optionsDatachannel);
     recvonlyDataChannel.on('message', (message) => {    
-        if(message.data[0]==-32||message.data[0]==224||message.data[0]==0xe0){
+        if((int)(message.data[0])==-32||(uint)(message.data[0])==224||message.data[0]==0xe0){
         let msg = message.data[1]<<8 | message.data[2];
             msg=(msg/700.0)*180.0;
         ReactUnityWebGL.VRRotation(msg);
